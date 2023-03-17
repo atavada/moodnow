@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::get('/home', function () {
     return view('user/home');
 });
@@ -26,3 +30,36 @@ Route::get('/landingpage', function () {
 });
 
 //Route::get(', [App\Http\Controllers\Admin\DashboardController::class, 'home'])->name('admin.dashboard');
+=======
+// Auth Login Register
+Auth::routes();
+  
+/*------------------------------------------
+All Normal Users Routes List
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:user'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
+  
+/*------------------------------------------
+All Admin Routes List
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+});
+  
+/*------------------------------------------
+All Admin Routes List
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:operator'])->group(function () {
+    Route::get('/operator/home', [HomeController::class, 'operatorHome'])->name('operator.home');
+});
+
+/*------------------------------------------
+All Admin Routes List
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:sobatmoodnow'])->group(function () {
+    Route::get('/sobatmoodnow/home', [HomeController::class, 'sobatmoodnowHome'])->name('sobatmoodnow.home');
+});
+// End Auth
+>>>>>>> 67c14537f5e2ad2899e001846a34af90c5978b70
