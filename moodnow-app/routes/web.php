@@ -17,4 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+Route::get('/home', function () {
+    return view('user/home');
+});
+
+Route::get('/landingpage', function () {
+    return view('user/landingpage');
+});
+
+//Route::get(', [App\Http\Controllers\Admin\DashboardController::class, 'home'])->name('admin.dashboard');
