@@ -20,41 +20,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Auth Login Register
 Auth::routes();
   
 /*------------------------------------------
---------------------------------------------
 All Normal Users Routes List
---------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-  
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
   
 /*------------------------------------------
---------------------------------------------
 All Admin Routes List
---------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-  
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
 });
   
 /*------------------------------------------
---------------------------------------------
 All Admin Routes List
---------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:operator'])->group(function () {
-
     Route::get('/operator/home', [HomeController::class, 'operatorHome'])->name('operator.home');
 });
 
+/*------------------------------------------
+All Admin Routes List
+--------------------------------------------*/
 Route::middleware(['auth', 'user-access:sobatmoodnow'])->group(function () {
-
     Route::get('/sobatmoodnow/home', [HomeController::class, 'sobatmoodnowHome'])->name('sobatmoodnow.home');
 });
-
-Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+// End Auth
