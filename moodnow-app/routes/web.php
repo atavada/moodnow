@@ -20,7 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
 Route::get('/home', function () {
     return view('user/home');
 });
@@ -29,8 +28,6 @@ Route::get('/landingpage', function () {
     return view('user/landingpage');
 });
 
-//Route::get(', [App\Http\Controllers\Admin\DashboardController::class, 'home'])->name('admin.dashboard');
-=======
 // Auth Login Register
 Auth::routes();
   
@@ -38,7 +35,7 @@ Auth::routes();
 All Normal Users Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/user/home', [HomeController::class, 'index'])->name('home');
 });
   
 /*------------------------------------------
@@ -62,4 +59,3 @@ Route::middleware(['auth', 'user-access:sobatmoodnow'])->group(function () {
     Route::get('/sobatmoodnow/home', [HomeController::class, 'sobatmoodnowHome'])->name('sobatmoodnow.home');
 });
 // End Auth
->>>>>>> 67c14537f5e2ad2899e001846a34af90c5978b70
