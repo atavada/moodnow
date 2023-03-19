@@ -15,19 +15,19 @@ class CreateUsersSeeder extends Seeder
     {
         $users = [
             [
-               'name'=>'Admin User',
+               'name'=>'Admin MoodNow',
                'email'=>'admin@gmail.com',
                'type'=>1,
                'password'=> bcrypt('123'),
             ],
             [
-               'name'=>'Operator User',
+               'name'=>'Operator MoodNow',
                'email'=>'operator@gmail.com',
                'type'=> 2,
                'password'=> bcrypt('123'),
             ],
             [
-                'name'=>'Sobat Moodnow User',
+                'name'=>'Sobat MoodNow',
                 'email'=>'sobat@gmail.com',
                 'type'=> 3,
                 'password'=> bcrypt('123'),

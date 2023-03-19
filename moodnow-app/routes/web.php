@@ -20,14 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('user/home');
-});
-
-Route::get('/landingpage', function () {
-    return view('user/landingpage');
-});
-
 // Auth Login Register
 Auth::routes();
   
@@ -35,14 +27,14 @@ Auth::routes();
 All Normal Users Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-    Route::get('/user/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
   
 /*------------------------------------------
 All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-    Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+    Route::get('/admin/dashboard', [HomeController::class, 'adminHome'])->name('admin.home');
 });
   
 /*------------------------------------------
