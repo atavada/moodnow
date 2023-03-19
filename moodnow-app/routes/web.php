@@ -17,7 +17,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.index');
 });
 
 // Auth Login Register
@@ -41,13 +41,13 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:operator'])->group(function () {
-    Route::get('/operator/home', [HomeController::class, 'operatorHome'])->name('operator.home');
+    Route::get('/operator/dashboard', [HomeController::class, 'operatorHome'])->name('operator.home');
 });
 
 /*------------------------------------------
 All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:sobatmoodnow'])->group(function () {
-    Route::get('/sobatmoodnow/home', [HomeController::class, 'sobatmoodnowHome'])->name('sobatmoodnow.home');
+    Route::get('/sobatmoodnow/dashboard', [HomeController::class, 'sobatmoodnowHome'])->name('sobatmoodnow.home');
 });
 // End Auth

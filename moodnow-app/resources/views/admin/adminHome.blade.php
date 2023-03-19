@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Operator')
+@section('title', 'Admin')
 
 @section('sidebar')
     <!-- Sidebar -->
@@ -48,6 +48,42 @@
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Response</span>
             </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Consul
+        </div>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="quisioner.html" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-comments"></i>
+                <span>Jawab MoodNow</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            USER SETTING
+        </div>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="user.html" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-user"></i>
+                <span>User</span>
+            </a>
+        </li>
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-list"></i>
+                <span>Role</span></a>
         </li>
     </ul>
     <!-- End of Sidebar -->
