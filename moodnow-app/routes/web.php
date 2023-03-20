@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\User\MainController;
+use App\Http\Controllers\User\AboutController;
+use App\Http\Controllers\User\DetectController;
+use App\Http\Controllers\User\ConsulController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +19,20 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('user.index');
-});
+Route::get('/', [MainController::class, 'index'])->name('main');
+
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 // Auth Login Register
 Auth::routes();
-  
+
 /*------------------------------------------
 All Normal Users Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/detect', [DetectController::class, 'index'])->name('detect');
+    Route::get('/consul', [ConsulController::class, 'index'])->name('consul');
 });
   
 /*------------------------------------------

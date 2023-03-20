@@ -15,7 +15,7 @@
     <meta name="author" content="Themefisher">
     <meta name="generator" content="Themefisher Kross Template v1.0">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('landpage/images/favicon.png') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/iconmoodnow.png') }}" />
 
     <!-- ** Plugins Needed for the Project ** -->
     <!-- Bootstrap -->
@@ -28,11 +28,13 @@
     <!-- Main Stylesheet -->
     <link href="{{ asset('landpage/css/style.css') }}" rel="stylesheet">
 
+    @yield('style')
+
 </head>
 <body>
     <header class="navigation fixed-top">
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand font-tertiary h3" href="index.html">MoodNow</a>
+            <a class="navbar-brand font-tertiary h3" href="{{ route('main') }}">MoodNow</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                 aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,19 +43,19 @@
             <div class="collapse navbar-collapse text-center" id="navigation">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="{{ route('main') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="mood.html">About</a>
+                <a class="nav-link" href="{{ route('about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="blog.html">Detect Mood</a>
+                <a class="nav-link" href="{{ route('detect') }}">Detect Mood</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="portfolio.html">Consultation</a>
+                <a class="nav-link" href="{{ route('consul') }}">Consultation</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
+                <a class="nav-link" href="#">Contact</a>
                 </li>
                 @guest
                     @if (Route::has('login'))
@@ -79,38 +81,6 @@
     </header>
 
     @yield('content')
-
-    <!-- contact -->
-    <section class="section section-on-footer" data-background="{{ asset('landpage/images/backgrounds/bg-dots.png') }}">
-        <div class="container">
-            <div class="row">
-            <div class="col-12 text-center">
-                <h2 class="section-title">Contact Info</h2>
-            </div>
-            <div class="col-lg-8 mx-auto">
-                <div class="bg-white rounded text-center p-5 shadow-down">
-                <h4 class="mb-80">Contact Form</h4>
-                <form action="#" class="row">
-                    <div class="col-md-6">
-                    <input type="text" id="name" name="name" placeholder="Full Name" class="form-control px-0 mb-4" required>
-                    </div>
-                    <div class="col-md-6">
-                    <input type="email" id="email" name="email" placeholder="Email Address" class="form-control px-0 mb-4" required>
-                    </div>
-                    <div class="col-12">
-                    <textarea name="message" id="message" class="form-control px-0 mb-4"
-                        placeholder="Type Message Here" required></textarea>
-                    </div>
-                    <div class="col-lg-6 col-10 mx-auto">
-                    <button class="btn btn-primary w-100">send</button>
-                    </div>
-                </form>
-                </div>
-            </div>
-            </div>
-        </div>
-    </section>
-    <!-- /contact -->
 
     <!-- footer -->
     <footer class="bg-dark footer-section">

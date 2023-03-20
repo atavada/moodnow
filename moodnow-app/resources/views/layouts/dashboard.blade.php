@@ -15,6 +15,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('sb/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/iconmoodnow.png') }}" />
+    
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
