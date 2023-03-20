@@ -7,11 +7,12 @@
         <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-            <h1 class="text-white font-tertiary">Consultation</h1>
+            <h1 class="text-white font-tertiary">Contact Us</h1>
             </div>
         </div>
         </div>
-        <!-- background shapes -->
+    
+    <!-- background shapes -->
         <img src="{{ asset('landpage/images/illustrations/page-title.png') }}" alt="illustrations" class="bg-shape-1 w-100">
         <img src="{{ asset('landpage/images/illustrations/leaf-pink-round.png') }}" alt="illustrations" class="bg-shape-2">
         <img src="{{ asset('landpage/images/illustrations/dots-cyan.png') }}" alt="illustrations" class="bg-shape-3">
@@ -25,25 +26,28 @@
     <!-- contact -->
     <section class="section section-on-footer" data-background="{{ asset('landpage/images/backgrounds/bg-dots.png') }}">
         <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-            <h2 class="section-title">Hi ada apa denganmu?</h2>
-            </div>
+            <div class="row">
             <div class="col-lg-8 mx-auto">
-            <div class="bg-white rounded text-center p-5 shadow-down">
-                <h4 class="mb-80">Consultation Form</h4>
+                <div class="bg-white rounded text-center p-5 shadow-down">
+                <h4 class="mb-80">Contact Form</h4>
                 <form action="#" class="row">
-                <div class="col-12">
+                    <div class="col-md-6">
+                    <input type="text" id="name" name="name" placeholder="Full Name" class="form-control px-0 mb-4" required>
+                    </div>
+                    <div class="col-md-6">
+                    <input type="email" id="email" name="email" placeholder="Email Address" class="form-control px-0 mb-4" required>
+                    </div>
+                    <div class="col-12">
                     <textarea name="message" id="message" class="form-control px-0 mb-4"
-                    placeholder="Type Message Here" required></textarea>
-                </div>
-                <div class="col-lg-6 col-10 mx-auto">
+                        placeholder="Type Message Here" required></textarea>
+                    </div>
+                    <div class="col-lg-6 col-10 mx-auto">
                     <button class="btn btn-primary w-100">send</button>
-                </div>
+                    </div>
                 </form>
+                </div>
             </div>
             </div>
-        </div>
         </div>
     </section>
     <!-- /contact -->

@@ -92,7 +92,7 @@
             identify patterns in your mood, and track changes over time. It's a powerful tool for anyone 
             looking to improve their mental well-being.
           </p>
-          <a href="questionnaire.html" class="btn btn-artistic"><button class="btn btn-sm btn-light w-100">Take the Questionnaire</button></a>
+          <a href="{{ route('detect') }}" class="btn btn-artistic"><button class="btn btn-sm btn-light w-100">Take the Questionnaire</button></a>
         </div>
         <!-- slider-item -->
         <div class="text-center testimonial-content">
@@ -113,7 +113,7 @@
     <img src="{{ asset('landpage/images/illustrations/leaf-orange.png') }}" alt="bg-shape" class="img-fluid bg-shape-2" />
     <img src="{{ asset('landpage/images/illustrations/dots-group-sm.png') }}" alt="bg-shape" class="img-fluid bg-shape-3" />
     <img src="{{ asset('landpage/images/illustrations/leaf-pink-round.png') }}" alt="bg-shape" class="img-fluid bg-shape-4" />
-    <img src="{{ asset('landpage/images/illustrations/leaf-cyan.png') }}" alt="bg-shape" class="img-fluid bg-shape-5" />
+    <img src="{{ asset('landpage/images/illustrations/leaf-cyan.png') }}" alt="bg-shape" class="img-fluid bg-shape-5" id="contact"  />
   </section>
   <!-- /testimonial -->
   

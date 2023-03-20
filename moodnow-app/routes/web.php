@@ -7,6 +7,7 @@ use App\Http\Controllers\User\MainController;
 use App\Http\Controllers\User\AboutController;
 use App\Http\Controllers\User\DetectController;
 use App\Http\Controllers\User\ConsulController;
+use App\Http\Controllers\User\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\User\ConsulController;
 Route::get('/', [MainController::class, 'index'])->name('main');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 // Auth Login Register
 Auth::routes();
