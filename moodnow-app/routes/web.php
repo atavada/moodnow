@@ -20,6 +20,7 @@ use App\Http\Controllers\User\ContactController;
 |
 */
 
+// Landing Page
 Route::get('/', [MainController::class, 'index'])->name('main');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');

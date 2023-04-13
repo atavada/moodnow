@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function adminHome()
     {
-        return view('admin.adminHome');
+        return view('admin.dashboard.adminHome');
     }
    
     /**
@@ -43,7 +43,7 @@ class HomeController extends Controller
      */
     public function operatorHome()
     {
-        return view('admin.operatorHome');
+        return view('admin.dashboard.operatorHome');
     }
         /**
      * Show the application dashboard.
@@ -52,6 +52,6 @@ class HomeController extends Controller
      */
     public function sobatmoodnowHome()
     {
-        return view('admin.sobatmoodnowHome');
+        return view('admin.dashboard.sobatmoodnowHome');
     }
 }
