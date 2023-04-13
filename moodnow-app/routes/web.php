@@ -23,6 +23,8 @@ use App\Http\Controllers\User\ContactController;
 // Landing Page
 Route::get('/', [MainController::class, 'index'])->name('main');
 
+Route::get('/tes', [MainController::class, 'tes'])->name('tes');
+
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
