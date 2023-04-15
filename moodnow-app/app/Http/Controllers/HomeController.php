@@ -26,7 +26,7 @@ class HomeController extends Controller
         return view('user.index');
     }
 
-        /**
+    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable

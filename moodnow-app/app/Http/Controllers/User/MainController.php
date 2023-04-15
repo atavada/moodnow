@@ -16,9 +16,4 @@ class MainController extends Controller
     {
         return view('user.index');
     }
-
-    public function tes()
-    {
-        return view('admin.quiz.index');
-    }
 }

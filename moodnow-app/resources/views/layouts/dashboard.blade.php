@@ -1,135 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'User') &mdash; Dashboard</title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('sb/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <!-- CSS Libraries -->
 
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('sb/css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{{ asset('stisla/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('stisla/css/components.css') }}">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/iconmoodnow.png') }}" />
+  <title>{{ Auth::user()->type }} &mdash; Dashboard</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/iconmoodnow.png') }}" />
     
 </head>
-<body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
 
-        @yield('sidebar')
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <!-- Main Content -->
-            <div id="content">
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto"> 
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{ asset('sb/img/undraw_profile.svg') }}">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    {{ __('Logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End of Topbar -->
-
-            @yield('content')
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; MoodNow 2023</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-        </div>
-        <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
+<body style="background: #e2e8f0">
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar">
+        <form class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+          </ul>
+        </form>
+        <ul class="navbar-nav navbar-right">
+          <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+            <img alt="image" src="{{ asset('stisla/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="features-profile.html" class="dropdown-item has-icon">
+                <i class="far fa-user"></i> Profile
+              </a>
+              <a href="features-settings.html" class="dropdown-item has-icon">
+                <i class="fas fa-cog"></i> Settings
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> 
+                {{ __('Logout') }}
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
             </div>
-        </div>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+            <div class="sidebar-brand">
+              <a href="index.html">MoodNow</a>
+            </div>
+            <div class="sidebar-brand sidebar-brand-sm">
+              <a href="index.html">MN</a>
+            </div>
+            <ul class="sidebar-menu">
+              <li class="menu-header">Dashboard</li>
+              <li class="{{ setActive('dashboard') }}">
+                  <a href="{{ route('admin.dashboard.index') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              </li>
+
+              {{-- @can('appSettings.index') --}}
+              <li class="menu-header">App Setting</li>
+              <li class="{{ setActive('admin/questionnaire') }}">
+                <a href="#" class="nav-link"><i class="fas fa-book"></i><span>Questionnaire</span></a>
+              </li>
+              <li class="{{ setActive('admin/color') }}">
+                <a href="#" class="nav-link"><i class="fas fa-paint-brush"></i><span>Color</span></a>
+              </li>
+              <li class="{{ setActive('admin/analysisMood') }}">
+                <a href="#" class="nav-link"><i class="fas fa-cogs"></i><span>Mood Control</span></a>
+              </li>
+              <li class="{{ setActive('admin/music') }}">
+                <a href="#" class="nav-link"><i class="fas fa-music"></i><span>Music Recommendation</span></a>
+              </li>
+              {{-- @endcan --}}
+
+              {{-- @can('consuls.index') --}}
+              <li class="menu-header">Consul</li>
+              <li class="{{ setActive('admin/consul') }}">
+                <a href="#" class="nav-link"><i class="fas fa-fw fa-comments"></i><span>Jawab MoodNow</span></a>
+              </li>
+              {{-- @endcan --}}
+
+              {{-- @can('users.index'); --}}
+              <li class="menu-header">User Setting</li>
+              <li class="{{ setActive('user') }}">
+                <a href="{{ route('admin.user.index') }}" class="nav-link"><i class="fas fa-user"></i><span>Users Control</span></a>
+              </li>
+              <li class="{{ setActive('moodnow-user') }}">
+                <a href="{{ route('admin.userMoodnow.index') }}" class="nav-link"><i class="fas fa-users"></i><span>Users MoodNow</span></a>
+              </li>
+              {{-- @endcan --}}
+          </ul>
+        </aside>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        @yield('content')
+      </div>
     </div>
+  </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('sb/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('sb/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- General JS Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://kit.fontawesome.com/53d82b54ee.js" crossorigin="anonymous"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('sb/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+  <script src="{{ asset('stisla/js/stisla.js"') }}"></script>
+  <script src="{{ asset('assets/modules/popper.js') }}"></script>
+  <script src="{{ asset('assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('sb/js/sb-admin-2.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{ asset('sb/vendor/chart.js/Chart.min.js') }}"></script>
+  <!-- Template JS File -->
+  <script src="{{ asset('stisla/js/scripts.js') }}"></script>
+  <script src="{{ asset('stisla/js/custom.js') }}"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('sb/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('sb/js/demo/chart-pie-demo.js') }}"></script>
+  <script>
+    //active select2
+    $(document).ready(function () {
+      $('select').select2({
+        theme: 'bootstrap4',
+        width: 'style',
+      });
+    });
+    @if(session()-> has('success'))
+    swal({
+      type: "success",
+      icon: "success",
+      title: "BERHASIL!",
+      text: "{{ session('success') }}",
+      timer: 1500,
+      showConfirmButton: false,
+      showCancelButton: false,
+      buttons: false,
+    });
+    @elseif(session()-> has('error'))
+    swal({
+      type: "error",
+      icon: "error",
+      title: "GAGAL!",
+      text: "{{ session('error') }}",
+      timer: 1500,
+      showConfirmButton: false,
+      showCancelButton: false,
+      buttons: false,
+    });
+    @endif
+  </script>
 
 </body>
 </html>

@@ -39,6 +39,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    // protected function login(Request $request, $user)
+    // {
+    //     return redirect()->route('admin.dashboard.index');
+    // }
+
     public function login(Request $request)
     {   
         $input = $request->all();
@@ -51,11 +56,11 @@ class LoginController extends Controller
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->type == 'admin') {
-                return redirect()->route('admin.home');
+                return redirect()->route('admin.dashboard.index');
             } else if (auth()->user()->type == 'operator') {
-                return redirect()->route('operator.home');
+                return redirect()->route('admin.dashboard.index');
             } else if (auth()->user()->type == 'sobatmoodnow') {
-                return redirect()->route('sobatmoodnow.home');
+                return redirect()->route('admin.dashboard.index');
             } else{
                 return redirect()->route('home');
             }

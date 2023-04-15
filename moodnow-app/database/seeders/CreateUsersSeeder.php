@@ -31,7 +31,7 @@ class CreateUsersSeeder extends Seeder
                 'email'=>'sobat@gmail.com',
                 'type'=> 3,
                 'password'=> bcrypt('123'),
-             ],
+            ],
             [
                'name'=>'User',
                'email'=>'user@gmail.com',

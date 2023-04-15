@@ -44,7 +44,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-        /**
+    /**
      * Interact with the user's first name.
      *
      * @param  string  $value
@@ -55,5 +55,13 @@ class User extends Authenticatable
         return new Attribute(
             get: fn ($value) =>  ["user", "admin", "operator", "sobatmoodnow"][$value],
         );
+    }
+
+    /**
+     * Get the consultations for the user.
+     */
+    public function consul()
+    {
+        return $this->hasMany(Consul::class);
     }
 }

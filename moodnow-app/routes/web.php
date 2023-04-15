@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -23,10 +25,8 @@ use App\Http\Controllers\User\ContactController;
 // Landing Page
 Route::get('/', [MainController::class, 'index'])->name('main');
 
-Route::get('/tes', [MainController::class, 'tes'])->name('tes');
-
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-
+    
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 // Auth Login Register
@@ -45,7 +45,22 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-    Route::get('/admin/dashboard', [HomeController::class, 'adminHome'])->name('admin.home');
+    // Route::get('/admin/dashboard', [HomeController::class, 'adminHome'])->name('admin.dashboard.index');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
+
+    // Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
+    Route::resource('users', UserController::class, ['names' => [
+        'index' => 'admin.user.index',
+        'create' => 'admin.user.create',
+        'store' => 'admin.user.store',
+        'edit' => 'admin.user.edit',
+        'update' => 'admin.user.update',
+        'destroy' => 'admin.user.destroy'
+    ]]);
+
+    Route::get('/moodnow-user', [UserController::class, 'indexMoodnow'])->name('admin.userMoodnow.index');
+
 });
   
 /*------------------------------------------
@@ -62,3 +77,17 @@ Route::middleware(['auth', 'user-access:sobatmoodnow'])->group(function () {
     Route::get('/sobatmoodnow/dashboard', [HomeController::class, 'sobatmoodnowHome'])->name('sobatmoodnow.home');
 });
 // End Auth
+
+
+// Route::prefix('admin')->group(function () {
+    // Route::group(['middleware' => 'auth'], function(){
+    
+    // //dashboard
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
+    
+    // Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
+
+    // Route::get('/moodnow-user', [UserController::class, 'indexMoodnow'])->name('admin.userMoodnow.index');
+
+    // });
+// });
