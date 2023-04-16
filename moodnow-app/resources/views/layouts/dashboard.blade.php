@@ -37,7 +37,7 @@
             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <a href="features-profile.html" class="dropdown-item has-icon">
-                <i class="far fa-user"></i> Profile
+                <i class="fas fa-user"></i> Profile
               </a>
               <a href="features-settings.html" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
@@ -60,10 +60,10 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
             <div class="sidebar-brand">
-              <a href="index.html">MoodNow</a>
+              <a href="{{ route('main') }}">MoodNow</a>
             </div>
             <div class="sidebar-brand sidebar-brand-sm">
-              <a href="index.html">MN</a>
+              <a href="{{ route('main') }}">MN</a>
             </div>
             <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
@@ -73,8 +73,8 @@
 
               {{-- @can('appSettings.index') --}}
               <li class="menu-header">App Setting</li>
-              <li class="{{ setActive('admin/questionnaire') }}">
-                <a href="#" class="nav-link"><i class="fas fa-book"></i><span>Questionnaire</span></a>
+              <li class="{{ setActive('quiz') }}">
+                <a href="{{ route('admin.quiz.index') }}" class="nav-link"><i class="fas fa-book"></i><span>Questionnaire</span></a>
               </li>
               <li class="{{ setActive('admin/color') }}">
                 <a href="#" class="nav-link"><i class="fas fa-paint-brush"></i><span>Color</span></a>
@@ -97,7 +97,7 @@
               {{-- @can('users.index'); --}}
               <li class="menu-header">User Setting</li>
               <li class="{{ setActive('user') }}">
-                <a href="{{ route('admin.user.index') }}" class="nav-link"><i class="fas fa-user"></i><span>Users Control</span></a>
+                <a href="{{ route('admin.user.index') }}" class="nav-link"><i class="fas fa-user"></i><span>Users Admin</span></a>
               </li>
               <li class="{{ setActive('moodnow-user') }}">
                 <a href="{{ route('admin.userMoodnow.index') }}" class="nav-link"><i class="fas fa-users"></i><span>Users MoodNow</span></a>

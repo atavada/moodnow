@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="#" method="GET">
+                    <form action="{{ route('admin.user.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
                                 {{-- @can('users.create') --}}
