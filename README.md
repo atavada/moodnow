@@ -20,4 +20,5 @@ Welcome to the MoodNOw Website! In this site, you can track and detect your mood
 - Bootstrap 5
 
 ## Our Team
+
 @
