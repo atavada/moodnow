@@ -1,4 +1,5 @@
 @extends('layouts.dashboard')
+@section('title', 'User Moodnow')
 
 @section('content')
     <section class="section">

@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{{ asset('stisla/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('stisla/css/components.css') }}">
 
-  <title>{{ Auth::user()->type }} &mdash; Dashboard</title>
+  <title>{{ Auth::user()->type }} &mdash; @yield('title', 'Dashboard')</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/iconmoodnow.png') }}" />
     
@@ -117,7 +117,7 @@
 
   <!-- General JS Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://kit.fontawesome.com/53d82b54ee.js" crossorigin="anonymous"></script>
+  {{-- <script src="https://kit.fontawesome.com/53d82b54ee.js" crossorigin="anonymous"></script> --}}
 
   <script src="{{ asset('stisla/js/stisla.js"') }}"></script>
   <script src="{{ asset('assets/modules/popper.js') }}"></script>

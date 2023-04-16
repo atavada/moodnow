@@ -1,4 +1,5 @@
 @extends('layouts.dashboard')
+@section('title', 'User Admin')
 
 @section('content')
     <section class="section">
