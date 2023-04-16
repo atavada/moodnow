@@ -21,4 +21,7 @@ Welcome to the MoodNOw Website! In this site, you can track and detect your mood
 
 ## Our Team
 
-@
+@Ardha
+@Adelia
+@Elysa
+@Emirioprimo
