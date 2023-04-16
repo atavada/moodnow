@@ -67,13 +67,13 @@
                             <label class="font-weight-bold">ROLE</label>
                             <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="type" value="1" {{ old('type') == '1' ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="type" value="1" {{ old('type', $user->type) == '1' ? 'checked' : '' }}>
                                 <label class="form-check-label">Admin &nbsp;</label>
-                                <input class="form-check-input" type="checkbox" name="type" value="2" {{ old('type') == '2' ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="type" value="2" {{ old('type', $user->type) == '2' ? 'checked' : '' }}>
                                 <label class="form-check-label">Operator &nbsp;</label>
-                                <input class="form-check-input" type="checkbox" name="type" value="3" {{ old('type') == '3' ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="type" value="3" {{ old('type', $user->type) == '3' ? 'checked' : '' }}>
                                 <label class="form-check-label">Sobat MoodNow &nbsp;</label>
-                                <input class="form-check-input" type="checkbox" name="type" value="0" {{ old('type') == '0' ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="type" value="0" {{ old('type', $user->type) == '0' ? 'checked' : '' }}>
                                 <label class="form-check-label">User</label>
                             </div>
 

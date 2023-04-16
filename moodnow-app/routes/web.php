@@ -77,17 +77,3 @@ Route::middleware(['auth', 'user-access:sobatmoodnow'])->group(function () {
     Route::get('/sobatmoodnow/dashboard', [HomeController::class, 'sobatmoodnowHome'])->name('sobatmoodnow.home');
 });
 // End Auth
-
-
-// Route::prefix('admin')->group(function () {
-    // Route::group(['middleware' => 'auth'], function(){
-    
-    // //dashboard
-    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
-    
-    // Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
-
-    // Route::get('/moodnow-user', [UserController::class, 'indexMoodnow'])->name('admin.userMoodnow.index');
-
-    // });
-// });
