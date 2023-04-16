@@ -1562,14 +1562,9 @@
                             i > 1 && ua(m),
                             i > 1 &&
                                 sa(
-                                    a
-                                        .slice(0, i - 1)
-                                        .concat({
-                                            value:
-                                                " " === a[i - 2].type
-                                                    ? "*"
-                                                    : "",
-                                        })
+                                    a.slice(0, i - 1).concat({
+                                        value: " " === a[i - 2].type ? "*" : "",
+                                    })
                                 ).replace(P, "$1"),
                             c,
                             i < e && ya(a.slice(i, e)),
