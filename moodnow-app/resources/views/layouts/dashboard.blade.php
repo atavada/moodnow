@@ -29,7 +29,6 @@
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
           </ul>
         </form>
         <ul class="navbar-nav navbar-right">
@@ -116,8 +115,10 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   {{-- <script src="https://kit.fontawesome.com/53d82b54ee.js" crossorigin="anonymous"></script> --}}
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
   <script src="{{ asset('stisla/js/stisla.js"') }}"></script>
   <script src="{{ asset('assets/modules/popper.js') }}"></script>
@@ -125,7 +126,6 @@
   <script src="{{ asset('assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
   <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
 
-  <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
   <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
 
   <!-- Template JS File -->
