@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\MusicController;
 use App\Http\Controllers\Admin\QuestionnaireController;
+use App\Http\Controllers\Admin\ColorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -60,6 +61,17 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         'update' => 'admin.quiz.update',
         'destroy' => 'admin.quiz.destroy'
     ]]);
+
+     // Color
+     Route::resource('/colors', ColorController::class, ['names' => [
+        'index' => 'admin.color.index',
+        'create' => 'admin.color.create',
+        'store' => 'admin.color.store',
+        'edit' => 'admin.color.edit',
+        'update' => 'admin.color.update',
+        'destroy' => 'admin.color.destroy'
+    ]]);
+
 
     // User
     Route::resource('/users', UserController::class, ['names' => [

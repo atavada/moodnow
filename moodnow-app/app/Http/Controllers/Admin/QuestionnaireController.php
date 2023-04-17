@@ -56,4 +56,65 @@ class QuestionnaireController extends Controller
             return redirect()->route('admin.quiz.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
+      /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Questionnaire $quiz)
+    {
+        $quizs = Questionnaire::latest()->get();
+        return view('admin.quiz.edit', compact('quiz', 'quizs'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Questionnaire $quiz)
+    {
+        $this->validate($request, [
+            'name' => 'required', 'string', 'max:1000',
+        ]);
+
+        $quiz = Questionnaire::findOrFail($quiz->id);
+
+            $quiz->update([
+                'title' => $request->input('title'),
+            ]);
+                
+        if($quiz){
+            //redirect dengan pesan sukses
+            return redirect()->route('admin.quiz.index')->with(['success' => 'Data Berhasil Diupdate!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->route('admin.quiz.index')->with(['error' => 'Data Gagal Diupdate!']);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $quiz = Questionnaire::findOrFail($id);
+        $quiz->delete();
+
+        if($quiz) {
+            return response()->json([
+                'status' => 'success'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error'
+            ]);
+        }
+    }
 }
