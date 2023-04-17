@@ -82,8 +82,8 @@
               <li class="{{ setActive('admin/analysisMood') }}">
                 <a href="#" class="nav-link"><i class="fas fa-cogs"></i><span>Mood Control</span></a>
               </li>
-              <li class="{{ setActive('admin/music') }}">
-                <a href="#" class="nav-link"><i class="fas fa-music"></i><span>Music Recommendation</span></a>
+              <li class="{{ setActive('admin-music') }}">
+                <a href="{{ route('admin.music.index') }}" class="nav-link"><i class="fas fa-music"></i><span>Music Recommendation</span></a>
               </li>
               {{-- @endcan --}}
 
