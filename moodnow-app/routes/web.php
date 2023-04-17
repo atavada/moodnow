@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\QuestionnaireController;
+use App\Http\Controllers\Admin\AnalysisMoodController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -58,6 +59,16 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         'edit' => 'admin.quiz.edit',
         'update' => 'admin.quiz.update',
         'destroy' => 'admin.quiz.destroy'
+    ]]);
+
+    // AnalysisMood
+    Route::resource('/analysisMood', AnalysisMoodController::class, ['names' => [
+        'index' => 'admin.analysisMood.index',
+        'create' => 'admin.analysisMood.create',
+        'store' => 'admin.analysisMood.store',
+        'edit' => 'admin.analysisMood.edit',
+        'update' => 'admin.analysisMood.update',
+        'destroy' => 'admin.analysisMood.destroy'
     ]]);
 
     // User

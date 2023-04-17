@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   <!-- CSS Libraries -->
+  <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/select2-bootstrap4.css') }}" />
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('stisla/css/style.css') }}">
@@ -79,8 +81,8 @@
               <li class="{{ setActive('admin/color') }}">
                 <a href="#" class="nav-link"><i class="fas fa-paint-brush"></i><span>Color</span></a>
               </li>
-              <li class="{{ setActive('admin/analysisMood') }}">
-                <a href="#" class="nav-link"><i class="fas fa-cogs"></i><span>Mood Control</span></a>
+              <li class="{{ setActive('analysisMood') }}">
+                <a href="{{ route('admin.analysisMood.index') }}" class="nav-link"><i class="fas fa-cogs"></i><span>Mood Control</span></a>
               </li>
               <li class="{{ setActive('admin/music') }}">
                 <a href="#" class="nav-link"><i class="fas fa-music"></i><span>Music Recommendation</span></a>
@@ -123,6 +125,7 @@
   <script src="{{ asset('stisla/js/stisla.js"') }}"></script>
   <script src="{{ asset('assets/modules/popper.js') }}"></script>
   <script src="{{ asset('assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+  {{-- <script src="{{ asset('assets/js/bootstrap/js/core/bootstrap.min.js') }}"></script> --}}
   <script src="{{ asset('assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
   <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
 

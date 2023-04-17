@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('analysis_moods', function (Blueprint $table) {
             $table->id();
-            $table->enum('1',['yes','no']);
-            $table->enum('2',['yes','no']);
-            $table->enum('3',['yes','no']);
-            $table->enum('4',['yes','no']);
+            $table->enum('quiz_1',['yes','no']);
+            $table->enum('quiz_2',['yes','no']);
+            $table->enum('quiz_3',['yes','no']);
+            $table->enum('quiz_4',['yes','no']);
             $table->string('output');
             $table->timestamps();
         });
