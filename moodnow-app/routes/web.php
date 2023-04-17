@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\MusicController;
 use App\Http\Controllers\Admin\QuestionnaireController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +72,15 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     ]]);
     Route::get('/moodnow-user', [UserController::class, 'indexMoodnow'])->name('admin.userMoodnow.index');
 
+    // Route::get('/moodnow-music', [MusicController::class, 'index'])->name('admin.music.index');
+    Route::resource('moodnow-music', MusicController::class, ['names' => [
+        'index' => 'admin.music.index',
+        'create' => 'admin.music.create',
+        'store' => 'admin.music.store',
+        'edit' => 'admin.music.edit',
+        'update' => 'admin.music.update',
+        'destroy' => 'admin.music.destroy'
+    ]]);
 });
   
 /*------------------------------------------
