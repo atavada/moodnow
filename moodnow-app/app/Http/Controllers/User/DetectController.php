@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Questionnaire;
 use Illuminate\Http\Request;
 
 class DetectController extends Controller
@@ -14,6 +15,7 @@ class DetectController extends Controller
      */
     public function index()
     {
-        return view('user.detect');
+        $quizs = Questionnaire::get();
+        return view('user.detect', compact('quizs'));
     }
 }

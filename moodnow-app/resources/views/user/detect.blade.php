@@ -4,7 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: 30vh;
+  overflow: hidden;
+  }
+
+  .card-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   }
 
@@ -103,22 +110,19 @@
   <!-- /page title -->
 
   <div class="card-container">
-        <div class="card active">
-          <h2 class="text-white">No 1</h2>
-          <p class="text-white">Bagaimana perasaanmu hari ini?</p>
-        </div>
-        <div class="card">
-          <h2 class="text-white">No 2</h2>
-          <p class="text-white">Dari skala 1-10, seberapa bahagia kamu hari ini?</p>
-        </div>
-        <div class="card">
-          <h2 class="text-white">No 3</h2>
-          <p class="text-white">Apa yang membuatmu senang hari ini?</p>
-        </div>
-        <div class="card">
-          <h2 class="text-white">No 4</h2>
-          <p class="text-white">Apakah ada yang membuatmu marah hari ini?</p>
-        </div>
+        @foreach ($quizs as $key => $quiz)
+          <div class="card{{ $key == 0 ? ' active' : '' }}">
+            <h2 class="text-white">No {{ $key + 1 }}</h2>
+            <p class="text-white">{{ $quiz->title }}</p>
+          </div>
+        @endforeach
+  </div>
+  <div class="card-button">
+    <form action="#" method="POST">
+      @csrf
+      <button type="submit" name="answer" value="yes" class="btn btn-primary">Yes</button>
+      <button type="submit" name="answer" value="no" class="btn btn-primary">No</button>
+    </form>
   </div>
 
   <div class="pagination mb-5">

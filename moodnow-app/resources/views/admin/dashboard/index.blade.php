@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Users MoodNow</h4>
+                    <h4>Users Total</h4>
                   </div>
                   <div class="card-body">
                     {{ App\Models\User::count() ?? '0' }}

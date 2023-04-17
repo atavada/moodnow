@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\MusicController;
+use App\Http\Controllers\Admin\QuestionnaireController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -50,8 +51,18 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
-    // Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
-    Route::resource('users', UserController::class, ['names' => [
+    // Quiz
+    Route::resource('/quiz', QuestionnaireController::class, ['names' => [
+        'index' => 'admin.quiz.index',
+        'create' => 'admin.quiz.create',
+        'store' => 'admin.quiz.store',
+        'edit' => 'admin.quiz.edit',
+        'update' => 'admin.quiz.update',
+        'destroy' => 'admin.quiz.destroy'
+    ]]);
+
+    // User
+    Route::resource('/users', UserController::class, ['names' => [
         'index' => 'admin.user.index',
         'create' => 'admin.user.create',
         'store' => 'admin.user.store',
@@ -59,7 +70,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         'update' => 'admin.user.update',
         'destroy' => 'admin.user.destroy'
     ]]);
-
     Route::get('/moodnow-user', [UserController::class, 'indexMoodnow'])->name('admin.userMoodnow.index');
 
     // Route::get('/moodnow-music', [MusicController::class, 'index'])->name('admin.music.index');
