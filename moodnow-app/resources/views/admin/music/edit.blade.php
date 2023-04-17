@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.music.update', $music->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.music.update', $music->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">

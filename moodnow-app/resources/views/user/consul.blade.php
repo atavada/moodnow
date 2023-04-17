@@ -22,7 +22,7 @@
     </section>
     <!-- /page title -->
 
-    <!-- contact -->
+    <!-- consul -->
     <section class="section section-on-footer" data-background="{{ asset('landpage/images/backgrounds/bg-dots.png') }}">
         <div class="container">
         <div class="row">
@@ -31,21 +31,71 @@
             </div>
             <div class="col-lg-8 mx-auto">
             <div class="bg-white rounded text-center p-5 shadow-down">
-                <h4 class="mb-80">Consultation Form</h4>
-                <form action="#" class="row">
-                <div class="col-12">
-                    <textarea name="message" id="message" class="form-control px-0 mb-4"
-                    placeholder="Type Message Here" required></textarea>
-                </div>
-                <div class="col-lg-6 col-10 mx-auto">
-                    <button class="btn btn-primary w-100">send</button>
-                </div>
+                <h4 class="mb-80">Chat dengan Sobat MoodNow</h4>
+                <form action="{{ route('user.consul.store') }}" class="row" method="POST">
+                    @csrf
+
+                    <div class="col-12">
+                        <textarea name="question" id="question" class="form-control px-0 mb-4"
+                        placeholder="Tulis pesan yang kamu inginkan" value="{{ old('question') }}"
+                        class="@error('question') is-invalid @enderror"></textarea>
+
+                        @error('question')
+                            <div class="invalid-feedback mb-5" style="display: block">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-lg-6 col-10 mx-auto">
+                        <button class="btn btn-primary w-100" type="submit">send</button>
+                    </div>
                 </form>
+            </div>
+            <div class="bg-white rounded text-center p-5 shadow-down mt-5">
+                <h4 class="mb-80">History</h4>
+                <div class="col-12">
+                    <ol class="list-group">
+                        @foreach ($consuls->where('user_id', auth()->id()) as $no => $consul)
+                            <li class="list-group-item">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold"><b>Question:</b> {{ $consul->question }}</div>
+                                    <b>Answer:</b> {{ $consul->answer }}
+                                </div>
+                            </li>
+                        @endforeach
+                    </ol>
+                </div>
             </div>
             </div>
         </div>
         </div>
     </section>
-    <!-- /contact -->
+    <!-- /consul -->
 
+    <script>
+        //active select2
+        @if(session()-> has('success'))
+        swal({
+          type: "success",
+          icon: "success",
+          title: "BERHASIL!",
+          text: "{{ session('success') }}",
+          timer: 1500,
+          showConfirmButton: false,
+          showCancelButton: false,
+          buttons: false,
+        });
+        @elseif(session()-> has('error'))
+        swal({
+          type: "error",
+          icon: "error",
+          title: "GAGAL!",
+          text: "{{ session('error') }}",
+          timer: 1500,
+          showConfirmButton: false,
+          showCancelButton: false,
+          buttons: false,
+        });
+        @endif
+      </script>
 @endsection 

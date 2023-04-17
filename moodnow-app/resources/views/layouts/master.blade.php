@@ -52,7 +52,7 @@
                 <a class="nav-link" href="{{ route('detect') }}">Detect Mood</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="{{ route('consul') }}">Consultation</a>
+                <a class="nav-link" href="{{ route('user.consul') }}">Consultation</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="{{ route('contact') }}">Contact</a>

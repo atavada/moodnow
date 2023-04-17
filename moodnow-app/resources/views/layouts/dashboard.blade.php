@@ -78,11 +78,11 @@
               <li class="{{ setActive('quiz') }}">
                 <a href="{{ route('admin.quiz.index') }}" class="nav-link"><i class="fas fa-book"></i><span>Questionnaire</span></a>
               </li>
-              <li class="{{ setActive('color') }}">
-                <a href="{{ route('admin.color.index') }}" class="nav-link"><i class="fas fa-paint-brush"></i><span>Color</span></a>
-              </li>
               <li class="{{ setActive('analysisMood') }}">
                 <a href="{{ route('admin.analysisMood.index') }}" class="nav-link"><i class="fas fa-cogs"></i><span>Mood Control</span></a>
+              </li>
+              <li class="{{ setActive('color') }}">
+                <a href="{{ route('admin.color.index') }}" class="nav-link"><i class="fas fa-paint-brush"></i><span>Color Managed</span></a>
               </li>
               <li class="{{ setActive('music') }}">
                 <a href="{{ route('admin.music.index') }}" class="nav-link"><i class="fas fa-music"></i><span>Music Recommendation</span></a>
@@ -92,7 +92,7 @@
               {{-- @can('consuls.index') --}}
               <li class="menu-header">Consul</li>
               <li class="{{ setActive('consul') }}">
-                <a href="#" class="nav-link"><i class="fas fa-fw fa-comments"></i><span>Jawab MoodNow</span></a>
+                <a href="{{ route('admin.consul.index') }}" class="nav-link"><i class="fas fa-fw fa-comments"></i><span>Jawab MoodNow</span></a>
               </li>
               {{-- @endcan --}}
 

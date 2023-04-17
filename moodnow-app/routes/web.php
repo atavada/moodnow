@@ -1,18 +1,19 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\MusicController;
 use App\Http\Controllers\Admin\QuestionnaireController;
 use App\Http\Controllers\Admin\AnalysisMoodController;
 use App\Http\Controllers\Admin\ColorController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\MusicController;
+use App\Http\Controllers\Admin\ConsulController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\MainController;
 use App\Http\Controllers\User\AboutController;
 use App\Http\Controllers\User\DetectController;
-use App\Http\Controllers\User\ConsulController;
+use App\Http\Controllers\User\ConsultationController;
 use App\Http\Controllers\User\ContactController;
 
 /*
@@ -40,7 +41,8 @@ All Normal Users Routes List
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/detect', [DetectController::class, 'index'])->name('detect');
-    Route::get('/consul', [ConsulController::class, 'index'])->name('consul');
+    Route::get('/consul-user', [ConsultationController::class, 'index'])->name('user.consul');
+    Route::post('/consul-user', [ConsultationController::class, 'store'])->name('user.consul.store');
 });
   
 /*------------------------------------------
@@ -57,6 +59,16 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         'edit' => 'admin.quiz.edit',
         'update' => 'admin.quiz.update',
         'destroy' => 'admin.quiz.destroy'
+    ]]);
+
+    // AnalysisMood
+    Route::resource('/analysisMood', AnalysisMoodController::class, ['names' => [
+        'index' => 'admin.analysisMood.index',
+        'create' => 'admin.analysisMood.create',
+        'store' => 'admin.analysisMood.store',
+        'edit' => 'admin.analysisMood.edit',
+        'update' => 'admin.analysisMood.update',
+        'destroy' => 'admin.analysisMood.destroy'
     ]]);
 
     // Color
@@ -79,14 +91,13 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         'destroy' => 'admin.music.destroy'
     ]]);
 
-    // AnalysisMood
-    Route::resource('/analysisMood', AnalysisMoodController::class, ['names' => [
-        'index' => 'admin.analysisMood.index',
-        'create' => 'admin.analysisMood.create',
-        'store' => 'admin.analysisMood.store',
-        'edit' => 'admin.analysisMood.edit',
-        'update' => 'admin.analysisMood.update',
-        'destroy' => 'admin.analysisMood.destroy'
+    // Consul
+    Route::resource('/consul', ConsulController::class, ['names' => [
+        'index' => 'admin.consul.index',
+        'create' => 'admin.consul.create',
+        'edit' => 'admin.consul.edit',
+        'update' => 'admin.consul.update',
+        'destroy' => 'admin.consul.destroy'
     ]]);
 
     // User
