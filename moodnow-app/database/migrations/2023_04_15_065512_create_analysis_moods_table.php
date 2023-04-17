@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('analysis_moods', function (Blueprint $table) {
             $table->id();
-            $table->enum('quiz_1',['yes','no']);
-            $table->enum('quiz_2',['yes','no']);
-            $table->enum('quiz_3',['yes','no']);
-            $table->enum('quiz_4',['yes','no']);
-            $table->string('output');
+            $table->string('logic');
+            $table->enum('quiz_1',['yes','no'])->nullable();
+            $table->enum('quiz_2',['yes','no'])->nullable();
+            $table->enum('quiz_3',['yes','no'])->nullable();
+            $table->enum('quiz_4',['yes','no'])->nullable();
+            $table->string('output')->nullable();
             $table->timestamps();
         });
     }

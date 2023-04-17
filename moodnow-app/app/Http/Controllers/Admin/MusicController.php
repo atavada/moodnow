@@ -3,23 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Questionnaire;
+use App\models\Music;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Unique;
 
-class QuestionnaireController extends Controller
+class MusicController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $quizs = Questionnaire::latest()->when(request()->q, function($quizs) {
-            $quizs = $quizs->where('title', 'like', '%'. request()->q . '%');
-        })->paginate(10);
+        $musics = Music::latest()->when(request()->q, function($musics) {
+            $musics = $musics->where('title', 'like', '%'. request()->q . '%');
+        })->paginate(10);     
 
-        return view('admin.quiz.index', compact('quizs'));
+        return view('admin.music.index', compact('musics'));
     }
 
     /**
@@ -29,7 +30,7 @@ class QuestionnaireController extends Controller
      */
     public function create()
     {
-        return view('admin.quiz.create');
+        return view('admin.music.create');
     }
 
     /**
@@ -41,30 +42,35 @@ class QuestionnaireController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|unique:questionnaires'
+            'title' => 'required','unique:music',
+            'genre' => 'required',
+            'embed' => 'required'
         ]);
-
-        $quiz = Questionnaire::create([
+        
+        $music = Music::create([
             'title' => $request->input('title'),
+            'genre' => $request->input('genre'),
+            'embed' => $request->input('embed')
         ]);
-
-        if($quiz){
+            
+        if($music) {
             //redirect dengan pesan sukses
-            return redirect()->route('admin.quiz.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else{
+            return redirect()->route('admin.music.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } else {
             //redirect dengan pesan error
-            return redirect()->route('admin.quiz.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('admin.music.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
-      /**
+
+     /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Questionnaire $quiz)
+    public function edit(Music $music)
     {
-        return view('admin.quiz.edit', compact('quiz'));
+        return view('admin.music.edit', compact('music'));
     }
 
     /**
@@ -74,23 +80,27 @@ class QuestionnaireController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Questionnaire $quiz)
+    public function update(Request $request, Music $music)
     {
         $this->validate($request, [
-            'title' => 'required|unique:questionnaires'
+            'title' => 'required','unique:music'.$music->id,
+            'genre' => 'required',
+            'embed' => 'required'
         ]);
-
-        $quiz = Questionnaire::findOrFail($quiz->id);
-        $quiz->update([
+        
+        $music = Music::findOrFail($music->id);
+        $music->update([
             'title' => $request->input('title'),
+            'genre' => $request->input('genre'),
+            'embed' => $request->input('embed')
         ]);
-                
-        if($quiz){
+    
+        if ($music) {
             //redirect dengan pesan sukses
-            return redirect()->route('admin.quiz.index')->with(['success' => 'Data Berhasil Diupdate!']);
-        }else{
+            return redirect()->route('admin.music.index')->with(['success' => 'Data Berhasil Diupdate!']);
+        } else {
             //redirect dengan pesan error
-            return redirect()->route('admin.quiz.index')->with(['error' => 'Data Gagal Diupdate!']);
+            return redirect()->route('admin.music.index')->with(['error' => 'Data Gagal Diupdate!']);
         }
     }
 
@@ -102,10 +112,10 @@ class QuestionnaireController extends Controller
      */
     public function destroy($id)
     {
-        $quiz = Questionnaire::findOrFail($id);
-        $quiz->delete();
+        $music = Music::findOrFail($id);
+        $music->delete();
 
-        if($quiz) {
+        if($music) {
             return response()->json([
                 'status' => 'success'
             ]);

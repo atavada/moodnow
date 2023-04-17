@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('genre');
-            $table->string('embed');
+            $table->text('embed');
             $table->timestamps();
         });
     }

@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\MusicController;
 use App\Http\Controllers\Admin\QuestionnaireController;
 use App\Http\Controllers\Admin\AnalysisMoodController;
+use App\Http\Controllers\Admin\ColorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -26,9 +28,7 @@ use App\Http\Controllers\User\ContactController;
 
 // Landing Page
 Route::get('/', [MainController::class, 'index'])->name('main');
-
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-    
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 // Auth Login Register
@@ -47,8 +47,6 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-    // Route::get('/admin/dashboard', [HomeController::class, 'adminHome'])->name('admin.dashboard.index');
-
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
     // Quiz
@@ -59,6 +57,26 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         'edit' => 'admin.quiz.edit',
         'update' => 'admin.quiz.update',
         'destroy' => 'admin.quiz.destroy'
+    ]]);
+
+    // Color
+    Route::resource('/colors', ColorController::class, ['names' => [
+        'index' => 'admin.color.index',
+        'create' => 'admin.color.create',
+        'store' => 'admin.color.store',
+        'edit' => 'admin.color.edit',
+        'update' => 'admin.color.update',
+        'destroy' => 'admin.color.destroy'
+    ]]);
+
+    // Music
+    Route::resource('music', MusicController::class, ['names' => [
+        'index' => 'admin.music.index',
+        'create' => 'admin.music.create',
+        'store' => 'admin.music.store',
+        'edit' => 'admin.music.edit',
+        'update' => 'admin.music.update',
+        'destroy' => 'admin.music.destroy'
     ]]);
 
     // AnalysisMood

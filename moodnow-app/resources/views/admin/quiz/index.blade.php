@@ -14,23 +14,6 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.quiz.index') }}" method="GET">
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                {{-- @can('quiz.create') --}}
-                                    <div class="input-group-prepend">
-                                        <a href="{{ route('admin.quiz.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
-                                    </div>
-                                {{-- @endcan --}}
-                                <input type="text" class="form-control" name="q"
-                                       placeholder="cari berdasarkan question">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -50,11 +33,6 @@
                                             <a href="{{ route('admin.quiz.edit', $quiz->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                        {{-- @endcan
-                                        @can('quizs.delete') --}}
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $quiz->id }}">
-                                                <i class="fa fa-trash"></i>
-                                            </button>  
                                         {{-- @endcan --}}
                                     </td>
                                 </tr>

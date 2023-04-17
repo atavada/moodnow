@@ -1,30 +1,30 @@
 @extends('layouts.dashboard')
-@section('title', 'Color Managed')
+@section('title', 'Music')
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Color Managed</h1>
+            <h1>Music Recommendation</h1>
         </div>
 
         <div class="section-body">
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-paint-brush"></i> Color Managed</h4>
+                    <h4><i class="fas fa-music"></i> Music Recommendation</h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.color.index') }}" method="GET">
+                    <form action="{{ route('admin.music.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                {{-- @can('colors.create') --}}
+                                {{-- @can('musics.create') --}}
                                     <div class="input-group-prepend">
-                                        <a href="{{ route('admin.color.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
+                                        <a href="{{ route('admin.music.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
                                     </div>
                                 {{-- @endcan --}}
                                 <input type="text" class="form-control" name="q"
-                                       placeholder="cari berdasarkan warna">
+                                       placeholder="cari berdasarkan judul musik">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
                                     </button>
@@ -37,38 +37,39 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">NAME</th>
-                                <th scope="col" style="text-align: center">HEX</th>
-                                <th scope="col" style="text-align: center">OUTPUT</th>
+                                <th scope="col">TITLE</th>
+                                <th scope="col" style="width: 15%;text-align: center">GENRE</th>
+                                <th scope="col" style="width: 40%;text-align: center">EMBED</th>
                                 <th scope="col" style="width: 15%;text-align: center">ACTION</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($colors as $no => $color)
-                                    <tr>
-                                        <th scope="row" style="text-align: center">{{ ++$no + ($colors->currentPage()-1) * $colors->perPage() }}</th>
-                                        <td>{{ $color->name }}</td>
-                                        <td style="background-color: {{ $color->hex }};text-align: center">{{ $color->hex }}</td>
-                                        <td style="text-align: center">{{ $color->output }}</td>
-                                        <td style="text-align: center">{{ $color->action }}
-                                        {{-- <td class="text-center"> --}}
-                                            {{-- @can('colors.edit') --}}
-                                                <a href="{{ route('admin.color.edit', $color->id) }}" class="btn btn-sm btn-primary">
-                                                    <i class="fa fa-pencil-alt"></i>
-                                                </a>
-                                            {{-- @endcan --}}
-                                            {{-- @can('colors.delete') --}}
-                                                <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $color->id }}">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            {{-- @endcan --}}
-                                        </td>
-                                    </tr>
+                            @foreach ($musics as $no => $music)
+                                <tr>
+                                    <th scope="row" style="text-align: center">{{ ++$no + ($musics->currentPage()-1) * $musics->perPage() }}</th>
+                                    <td>{{ $music->title }}</td>
+                                    <td style="text-align: center">{{ $music->genre }}</td>
+                                    <td class="text-center">
+                                       {!! $music->embed !!}
+                                    </td>
+                                    <td class="text-center">
+                                        {{-- @can('musics.edit') --}}
+                                            <a href="{{ route('admin.music.edit', $music->id) }}" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                        {{-- @endcan
+                                        @can('musics.delete') --}}
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $music->id }}">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        {{-- @endcan --}}
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>
                         {{-- <div style="text-align: center">
-                            {{$colors->links("vendor.pagination.bootstrap-4")}}
+                            {{$musics->links("vendor.pagination.bootstrap-4")}}
                         </div> --}}
                     </div>
                 </div>
@@ -86,7 +87,7 @@
     
                 swal({
                     title: "APAKAH KAMU YAKIN ?",
-                    text: "INGIN MENGHAPUS WARNA INI!",
+                    text: "INGIN MENGHAPUS DATA INI!",
                     icon: "warning",
                     buttons: [
                         'TIDAK',
@@ -98,7 +99,7 @@
     
                         //ajax delete
                         jQuery.ajax({
-                            url: "{{ route("admin.color.index") }}/"+id,
+                            url: "{{ route("admin.music.index") }}/"+id,
                             data:   {
                                 "id": id,
                                 "_token": token
@@ -108,7 +109,7 @@
                                 if (response.status == "success") {
                                     swal({
                                         title: 'BERHASIL!',
-                                        text: 'WARNA BERHASIL DIHAPUS!',
+                                        text: 'DATA BERHASIL DIHAPUS!',
                                         icon: 'success',
                                         timer: 1000,
                                         showConfirmButton: false,
@@ -120,7 +121,7 @@
                                 }else{
                                     swal({
                                         title: 'GAGAL!',
-                                        text: 'WARNA GAGAL DIHAPUS!',
+                                        text: 'DATA GAGAL DIHAPUS!',
                                         icon: 'error',
                                         timer: 1000,
                                         showConfirmButton: false,

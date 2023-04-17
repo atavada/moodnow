@@ -35,10 +35,10 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Quiz</h4>
+                    <h4>Music</h4>
                   </div>
                   <div class="card-body">
-                    {{ App\Models\Questionnaire::count() ?? '0' }}
+                    {{ App\Models\Music::count() ?? '0' }}
                   </div>
                 </div>
               </div>

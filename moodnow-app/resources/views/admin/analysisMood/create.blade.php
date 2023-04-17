@@ -17,6 +17,13 @@
                 <div class="card-body">
                     <form action="{{ route('admin.analysisMood.store') }}" method="POST">
                         @csrf
+                        <div class="col">
+                            <div class="form-group">
+                                <label>LOGIC</label>
+                                <input type="text" name="logic" value="{{ old('logic') }}" placeholder="Masukkan Warna Baru"
+                                class="form-control @error('logic') is-invalid @enderror">
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-3">

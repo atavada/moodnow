@@ -15,22 +15,12 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.analysisMood.index') }}" method="GET">
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                {{-- @can('analysisMood.create') --}}
-                                    <div class="input-group-prepend">
-                                        <a href="{{ route('admin.analysisMood.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
-                                    </div>
-                                {{-- @endcan --}}
-                            </div>
-                        </div>
-                    </form>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
+                                <th scope="col" style="text-align: center">LOGIC</th>
                                 <th scope="col" style="text-align: center">QUESTION 1</th>
                                 <th scope="col" style="text-align: center">QUESTION 2</th>
                                 <th scope="col" style="text-align: center">QUESTION 3</th>
@@ -43,6 +33,7 @@
                             @foreach ($analysisMoods as $no => $analysisMood)
                                 <tr>
                                     <th scope="row" style="text-align: center">{{ ++$no }}</th>
+                                    <td style="text-align: center">{{ ($analysisMood->logic) }}</td>
                                     <td style="text-align: center">{{ ($analysisMood->quiz_1) == 'yes' ? 'YES' : 'NO' }}</td>
                                     <td style="text-align: center">{{ ($analysisMood->quiz_2) == 'yes' ? 'YES' : 'NO' }}</td>
                                     <td style="text-align: center">{{ ($analysisMood->quiz_3) == 'yes' ? 'YES' : 'NO' }}</td>
@@ -53,11 +44,6 @@
                                             <a href="{{ route('admin.analysisMood.edit', $analysisMood->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                        {{-- @endcan
-                                        @can('analysisMoods.delete') --}}
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $analysisMood->id }}">
-                                                <i class="fa fa-trash"></i>
-                                            </button>  
                                         {{-- @endcan --}}
                                     </td>
                                 </tr>
