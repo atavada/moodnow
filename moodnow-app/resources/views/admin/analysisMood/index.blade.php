@@ -54,7 +54,7 @@
                                 <td style="text-align: center">{{ ($analysisMood->quiz_2) == 'yes' ? 'YES' : 'NO' }}</td>
                                 <td style="text-align: center">{{ ($analysisMood->quiz_3) == 'yes' ? 'YES' : 'NO' }}</td>
                                 <td style="text-align: center">{{ ($analysisMood->quiz_4) == 'yes' ? 'YES' : 'NO' }}</td>
-                                <td style="text-align: center">{{ ($analysisMood->output == 'mood_baik') ? 'Mood Baik' : (($analysisMood->output == 'mood_buruk') ? 'Mood Buruk' : 'NULL') }}</td>
+                                <td style="text-align: center">{{ ($analysisMood->output) == 'mood_baik' ? 'Mood Baik' : 'Mood Buruk' }}</td>
                                 <td class="text-center">
                                     @can('analysisMoods.edit')
                                         <a href="{{ route('admin.analysisMood.edit', $analysisMood->id) }}" class="btn btn-sm btn-primary">
