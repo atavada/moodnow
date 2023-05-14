@@ -1,6 +1,6 @@
 # MoodNow - Mood Detector
 
-Welcome to the MoodNOw Website! In this site, you can track and detect your mood instantly, with color code and face recogniton, this site will be attractive and flexible to use
+Welcome to the MoodNow Website! In this site, you can track and detect your mood instantly, with color code and face recogniton, this site will be attractive and flexible to use
 
 ## Features
 
