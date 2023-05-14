@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +22,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'type',
     ];
 
     /**
@@ -44,22 +43,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Interact with the user's first name.
-     *
-     * @param  string  $value
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
-     */
-    protected function type(): Attribute
-    {
-        return new Attribute(
-            get: fn ($value) =>  ["user", "admin", "operator", "sobatmoodnow"][$value],
-        );
-    }
-
-    /**
-     * Get the consultations for the user.
-     */
     public function consul()
     {
         return $this->hasMany(Consul::class);

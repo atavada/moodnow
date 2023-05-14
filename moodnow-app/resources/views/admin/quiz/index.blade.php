@@ -1,53 +1,77 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
 @section('content')
-    <section class="section">
-        <div class="section-header">
-            <h1>Questionniare</h1>
-        </div>
+<section class="section">
+    <div class="section-header">
+        <h1>Questionniare</h1>
+    </div>
 
-        <div class="section-body">
+    <div class="section-body">
 
-            <div class="card">
-                <div class="card-header">
-                    <h4><i class="fas fa-book"></i> Questionniare</h4>
-                </div>
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-book"></i> Questionniare</h4>
+            </div>
 
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
+            <div class="card-body">
+                <form action="{{ route('admin.quiz.index') }}" method="GET">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            @can('quizs.create')
+                                <div class="input-group-prepend">
+                                    <a href="{{ route('admin.quiz.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
+                                </div>
+                            @endcan
+                            <input type="text" class="form-control" name="q"
+                                   placeholder="cari berdasarkan question">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-search"></i> CARI
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center;width: 6%">NO.</th>
+                            <th scope="col">QUESTION</th>
+                            <th scope="col" style="width: 15%;text-align: center">ACTION</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($quizs as $no => $quiz)
                             <tr>
-                                <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">QUESTION</th>
-                                <th scope="col" style="width: 15%;text-align: center">ACTION</th>
+                                <th scope="row" style="text-align: center">{{ ++$no + ($quizs->currentPage()-1) * $quizs->perPage() }}</th>
+                                <td>{{ $quiz->title }}</td>
+                                <td class="text-center">
+                                    @can('quizs.edit')
+                                        <a href="{{ route('admin.quiz.edit', $quiz->id) }}" class="btn btn-sm btn-primary">
+                                            <i class="fa fa-pencil-alt"></i>
+                                        </a>
+                                    @endcan
+
+                                    @can('quizs.delete')
+                                        <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $quiz->id }}">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    @endcan
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($quizs as $no => $quiz)
-                                <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($quizs->currentPage()-1) * $quizs->perPage() }}</th>
-                                    <td>{{ $quiz->title }}</td>
-                                    <td class="text-center">
-                                        {{-- @can('quizs.edit') --}}
-                                            <a href="{{ route('admin.quiz.edit', $quiz->id) }}" class="btn btn-sm btn-primary">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </a>
-                                        {{-- @endcan --}}
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        {{-- <div style="text-align: center">
-                            {{$quizs->links("vendor.pagination.bootstrap-4")}}
-                        </div> --}}
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div style="text-align: center">
+                        {{$quizs->links("vendor.pagination.bootstrap-5")}}
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-    </section>
+</section>
 
 <script>
     //ajax delete

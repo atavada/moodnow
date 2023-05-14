@@ -10,6 +10,16 @@ use App\Models\User;
 class ConsulController extends Controller
 {
     /**
+     * __construct
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['permission:consuls.index|consuls.edit|consuls.delete']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,7 +28,7 @@ class ConsulController extends Controller
     {
         $consuls = Consul::latest()->when(request()->q, function($consuls) {
             $consuls = $consuls->where('question', 'like', '%'. request()->q . '%');
-        })->paginate(10);
+        })->paginate(20);
 
         return view('admin.consul.index', compact('consuls'));
     }

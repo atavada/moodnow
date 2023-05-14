@@ -1,5 +1,4 @@
-@extends('layouts.dashboard')
-@section('title', 'Music')
+@extends('layouts.app')
 
 @section('content')
     <section class="section">
@@ -18,11 +17,11 @@
                     <form action="{{ route('admin.music.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                {{-- @can('musics.create') --}}
+                                @can('musics.create')
                                     <div class="input-group-prepend">
                                         <a href="{{ route('admin.music.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
                                     </div>
-                                {{-- @endcan --}}
+                                @endcan
                                 <input type="text" class="form-control" name="q"
                                        placeholder="cari berdasarkan judul musik">
                                 <div class="input-group-append">
@@ -53,24 +52,24 @@
                                        {!! $music->embed !!}
                                     </td>
                                     <td class="text-center">
-                                        {{-- @can('musics.edit') --}}
+                                        @can('musics.edit')
                                             <a href="{{ route('admin.music.edit', $music->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                        {{-- @endcan
-                                        @can('musics.delete') --}}
+                                        @endcan
+                                        @can('musics.delete')
                                             <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $music->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                        {{-- @endcan --}}
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        {{-- <div style="text-align: center">
-                            {{$musics->links("vendor.pagination.bootstrap-4")}}
-                        </div> --}}
+                        <div style="text-align: center">
+                            {{ $musics->links("vendor.pagination.bootstrap-5") }}
+                        </div>
                     </div>
                 </div>
             </div>

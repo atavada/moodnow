@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class QuestionnaireController extends Controller
 {
+    /**
+     * __construct
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['permission:quizs.index|quizs.create|quizs.edit|quizs.delete']);
+    }
+
      /**
      * Display a listing of the resource.
      *

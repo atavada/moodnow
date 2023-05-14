@@ -1,5 +1,4 @@
-@extends('layouts.dashboard')
-@section('title', 'Consultation')
+@extends('layouts.app')
 
 @section('content')
     <section class="section">

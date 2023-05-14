@@ -8,7 +8,17 @@ use Illuminate\Http\Request;
 
 class AnalysisMoodController extends Controller
 {
-     /**
+    /**
+     * __construct
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['permission:analysisMoods.index|analysisMoods.create|analysisMoods.edit|analysisMoods.delete']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -38,6 +48,7 @@ class AnalysisMoodController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'logic' => 'required',
             'quiz_1' => 'required',
             'quiz_2' => 'required',
             'quiz_3' => 'required',
@@ -46,6 +57,7 @@ class AnalysisMoodController extends Controller
         ]);
 
         $quiz = AnalysisMood::create([
+            'logic' => $request->input('logic'),
             'quiz_1' => $request->input('quiz_1'),
             'quiz_2' => $request->input('quiz_2'),
             'quiz_3' => $request->input('quiz_3'),
@@ -55,10 +67,10 @@ class AnalysisMoodController extends Controller
 
         if($quiz){
             //redirect dengan pesan sukses
-            return redirect()->route('admin.quiz.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('admin.analysisMood.index')->with(['success' => 'Data Berhasil Disimpan!']);
         }else{
             //redirect dengan pesan error
-            return redirect()->route('admin.quiz.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('admin.analysisMood.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -83,6 +95,7 @@ class AnalysisMoodController extends Controller
     public function update(Request $request, AnalysisMood $analysisMood)
     {
         $this->validate($request, [
+            'logic' => 'required',
             'quiz_1' => 'required',
             'quiz_2' => 'required',
             'quiz_3' => 'required',
@@ -92,6 +105,7 @@ class AnalysisMoodController extends Controller
 
         $analysisMood = AnalysisMood::findOrFail($analysisMood->id);
         $analysisMood->update([
+            'logic' => $request->input('logic'),
             'quiz_1' => $request->input('quiz_1'),
             'quiz_2' => $request->input('quiz_2'),
             'quiz_3' => $request->input('quiz_3'),
@@ -101,10 +115,10 @@ class AnalysisMoodController extends Controller
                 
         if($analysisMood){
             //redirect dengan pesan sukses
-            return redirect()->route('admin.analysisMood.index')->with(['success' => 'Warna Berhasil Diupdate!']);
+            return redirect()->route('admin.analysisMood.index')->with(['success' => 'Data Berhasil Diupdate!']);
         }else{
             //redirect dengan pesan error
-            return redirect()->route('admin.analysisMood.index')->with(['error' => 'Warna Gagal Diupdate!']);
+            return redirect()->route('admin.analysisMood.index')->with(['error' => 'Data Gagal Diupdate!']);
         }
     }
 

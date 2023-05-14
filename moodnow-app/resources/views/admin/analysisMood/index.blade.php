@@ -1,64 +1,83 @@
-@extends('layouts.dashboard')
-@section('title', 'Mood Control')
+@extends('layouts.app')
 
 @section('content')
-    <section class="section">
-        <div class="section-header">
-            <h1>Mood Control</h1>
-        </div>
+<section class="section">
+    <div class="section-header">
+        <h1>Mood Control</h1>
+    </div>
 
-        <div class="section-body">
+    <div class="section-body">
 
-            <div class="card">
-                <div class="card-header">
-                    <h4><i class="fas fa-cogs"></i> Mood Control</h4>
-                </div>
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-cogs"></i> Mood Control</h4>
+            </div>
 
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col" style="text-align: center">LOGIC</th>
-                                <th scope="col" style="text-align: center">QUESTION 1</th>
-                                <th scope="col" style="text-align: center">QUESTION 2</th>
-                                <th scope="col" style="text-align: center">QUESTION 3</th>
-                                <th scope="col" style="text-align: center">QUESTION 4</th>
-                                <th scope="col" style="text-align: center">OUTPUT</th>
-                                <th scope="col" style="width: 15%;text-align: center">ACTION</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($analysisMoods as $no => $analysisMood)
-                                <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no }}</th>
-                                    <td style="text-align: center">{{ ($analysisMood->logic) }}</td>
-                                    <td style="text-align: center">{{ ($analysisMood->quiz_1) == 'yes' ? 'YES' : 'NO' }}</td>
-                                    <td style="text-align: center">{{ ($analysisMood->quiz_2) == 'yes' ? 'YES' : 'NO' }}</td>
-                                    <td style="text-align: center">{{ ($analysisMood->quiz_3) == 'yes' ? 'YES' : 'NO' }}</td>
-                                    <td style="text-align: center">{{ ($analysisMood->quiz_4) == 'yes' ? 'YES' : 'NO' }}</td>
-                                    <td style="text-align: center">{{ ($analysisMood->output) == 'mood_baik' ? 'Mood Baik' : 'Mood Buruk' }}</td>
-                                    <td class="text-center">
-                                        {{-- @can('analysisMoods.edit') --}}
-                                            <a href="{{ route('admin.analysisMood.edit', $analysisMood->id) }}" class="btn btn-sm btn-primary">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </a>
-                                        {{-- @endcan --}}
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        {{-- <div style="text-align: center">
-                            {{$analysisMoods->links("vendor.pagination.bootstrap-4")}}
-                        </div> --}}
+            <div class="card-body">
+                <form action="{{ route('admin.analysisMood.index') }}" method="GET">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            @can('analysisMoods.create')
+                                <div class="input-group-prepend">
+                                    <a href="{{ route('admin.analysisMood.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
+                                </div>
+                            @endcan
+                            <input type="text" class="form-control" name="q"
+                                    placeholder="cari berdasarkan logic">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
+                                </button>
+                            </div>
+                        </div>
                     </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center;width: 6%">NO.</th>
+                            <th scope="col" style="text-align: center">LOGIC</th>
+                            <th scope="col" style="text-align: center">QUESTION 1</th>
+                            <th scope="col" style="text-align: center">QUESTION 2</th>
+                            <th scope="col" style="text-align: center">QUESTION 3</th>
+                            <th scope="col" style="text-align: center">QUESTION 4</th>
+                            <th scope="col" style="text-align: center">OUTPUT</th>
+                            <th scope="col" style="width: 15%;text-align: center">ACTION</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($analysisMoods as $no => $analysisMood)
+                            <tr>
+                                <th scope="row" style="text-align: center">{{ ++$no }}</th>
+                                <td style="text-align: center">{{ ($analysisMood->logic) }}</td>
+                                <td style="text-align: center">{{ ($analysisMood->quiz_1) == 'yes' ? 'YES' : 'NO' }}</td>
+                                <td style="text-align: center">{{ ($analysisMood->quiz_2) == 'yes' ? 'YES' : 'NO' }}</td>
+                                <td style="text-align: center">{{ ($analysisMood->quiz_3) == 'yes' ? 'YES' : 'NO' }}</td>
+                                <td style="text-align: center">{{ ($analysisMood->quiz_4) == 'yes' ? 'YES' : 'NO' }}</td>
+                                <td style="text-align: center">{{ ($analysisMood->output == 'mood_baik') ? 'Mood Baik' : (($analysisMood->output == 'mood_buruk') ? 'Mood Buruk' : 'NULL') }}</td>
+                                <td class="text-center">
+                                    @can('analysisMoods.edit')
+                                        <a href="{{ route('admin.analysisMood.edit', $analysisMood->id) }}" class="btn btn-sm btn-primary">
+                                            <i class="fa fa-pencil-alt"></i>
+                                        </a>
+                                    @endcan
+
+                                    @can('analysisMoods.delete')
+                                        <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $analysisMood->id }}">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    @endcan
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
 
-    </section>
+</section>
 
 <script>
     //ajax delete

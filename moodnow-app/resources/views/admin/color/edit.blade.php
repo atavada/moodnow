@@ -1,5 +1,4 @@
-@extends('layouts.dashboard')
-@section('title', 'Color Managed')
+@extends('layouts.app')
 
 @section('content')
     <section class="section">
@@ -15,8 +14,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.color.update', $color->id) }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('admin.color.update', $color->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -33,7 +31,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>HEX</label><br>
+                            <label>COLOR HEX</label><br>
                             <input type="color" name="hex" value="{{ old('hex', $color->hex) }}"
                                 placeholder="Masukkan Kode Warna" class="@error('hex') is-invalid @enderror">
 

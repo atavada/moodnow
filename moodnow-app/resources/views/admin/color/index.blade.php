@@ -1,5 +1,4 @@
-@extends('layouts.dashboard')
-@section('title', 'Color Managed')
+@extends('layouts.app')
 
 @section('content')
     <section class="section">
@@ -18,11 +17,11 @@
                     <form action="{{ route('admin.color.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                {{-- @can('colors.create') --}}
+                                @can('colors.create')
                                     <div class="input-group-prepend">
                                         <a href="{{ route('admin.color.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
                                     </div>
-                                {{-- @endcan --}}
+                                @endcan
                                 <input type="text" class="form-control" name="q"
                                        placeholder="cari berdasarkan warna">
                                 <div class="input-group-append">
@@ -38,7 +37,7 @@
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
                                 <th scope="col">NAME</th>
-                                <th scope="col" style="text-align: center">HEX</th>
+                                <th scope="col" style="text-align: center">COLOR HEX</th>
                                 <th scope="col" style="text-align: center">OUTPUT</th>
                                 <th scope="col" style="width: 15%;text-align: center">ACTION</th>
                             </tr>
@@ -50,26 +49,25 @@
                                         <td>{{ $color->name }}</td>
                                         <td style="background-color: {{ $color->hex }};text-align: center">{{ $color->hex }}</td>
                                         <td style="text-align: center">{{ $color->output }}</td>
-                                        <td style="text-align: center">{{ $color->action }}
-                                        {{-- <td class="text-center"> --}}
-                                            {{-- @can('colors.edit') --}}
+                                        <td class="text-center">
+                                            @can('colors.edit')
                                                 <a href="{{ route('admin.color.edit', $color->id) }}" class="btn btn-sm btn-primary">
                                                     <i class="fa fa-pencil-alt"></i>
                                                 </a>
-                                            {{-- @endcan --}}
-                                            {{-- @can('colors.delete') --}}
+                                            @endcan
+                                            @can('colors.delete')
                                                 <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $color->id }}">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
-                                            {{-- @endcan --}}
+                                            @endcan
                                         </td>
                                     </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        {{-- <div style="text-align: center">
-                            {{$colors->links("vendor.pagination.bootstrap-4")}}
-                        </div> --}}
+                        <div style="text-align: center">
+                            {{ $colors->links("vendor.pagination.bootstrap-5") }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,7 +84,7 @@
     
                 swal({
                     title: "APAKAH KAMU YAKIN ?",
-                    text: "INGIN MENGHAPUS WARNA INI!",
+                    text: "INGIN MENGHAPUS DATA INI!",
                     icon: "warning",
                     buttons: [
                         'TIDAK',
@@ -108,7 +106,7 @@
                                 if (response.status == "success") {
                                     swal({
                                         title: 'BERHASIL!',
-                                        text: 'WARNA BERHASIL DIHAPUS!',
+                                        text: 'DATA BERHASIL DIHAPUS!',
                                         icon: 'success',
                                         timer: 1000,
                                         showConfirmButton: false,
@@ -120,7 +118,7 @@
                                 }else{
                                     swal({
                                         title: 'GAGAL!',
-                                        text: 'WARNA GAGAL DIHAPUS!',
+                                        text: 'DATA GAGAL DIHAPUS!',
                                         icon: 'error',
                                         timer: 1000,
                                         showConfirmButton: false,

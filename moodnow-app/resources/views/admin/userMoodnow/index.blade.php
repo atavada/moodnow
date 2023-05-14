@@ -1,73 +1,72 @@
-@extends('layouts.dashboard')
-@section('title', 'User Moodnow')
+@extends('layouts.app')
 
 @section('content')
-    <section class="section">
-        <div class="section-header">
-            <h1>Users MoodNow</h1>
-        </div>
+<section class="section">
+    <div class="section-header">
+        <h1>Users MoodNow</h1>
+    </div>
 
-        <div class="section-body">
+    <div class="section-body">
 
-            <div class="card">
-                <div class="card-header">
-                    <h4><i class="fas fa-users"></i> Users MoodNow</h4>
-                </div>
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-users"></i> Users MoodNow</h4>
+            </div>
 
-                <div class="card-body">
-                    <form action="#" method="GET">
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="q"
-                                       placeholder="cari berdasarkan nama user">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
-                                    </button>
-                                </div>
+            <div class="card-body">
+                <form action="#" method="GET">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="q"
+                                    placeholder="cari berdasarkan nama user">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
+                                </button>
                             </div>
                         </div>
-                    </form>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">USERNAME</th>
-                                <th scope="col">EMAIL</th>
-                                <th scope="col" style="width: 15%;text-align: center">CREATED AT</th>
-                                <th scope="col" style="width: 15%;text-align: center">ACTION</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @php $num = 0 @endphp
-                            @foreach ($users as $no => $user)
-                                @if ($user->type == 'user')
-                                    <tr>
-                                        <th scope="row" style="text-align: center">{{ ++$num }}</th>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td style="text-align: center">{{ $user->created_at }}</td>
-                                        <td class="text-center">
-                                            {{-- @can('users.delete') --}}
-                                                <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $user->id }}">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            {{-- @endcan --}}
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                            </tbody>
-                        </table>
-                        {{-- <div style="text-align: center">
-                            {{$users->links("vendor.pagination.bootstrap-4")}}
-                        </div> --}}
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center;width: 6%">NO.</th>
+                            <th scope="col">USERNAME</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col" style="width: 15%;text-align: center">CREATED AT</th>
+                            <th scope="col" style="width: 15%;text-align: center">ACTION</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @php $num = 0 @endphp
+                        @foreach ($users as $no => $user)
+                            @if ($user->type == 'user')
+                                <tr>
+                                    <th scope="row" style="text-align: center">{{ ++$num }}</th>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td style="text-align: center">{{ $user->created_at }}</td>
+                                    <td class="text-center">
+                                        @can('users.delete')
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $user->id }}">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        @endcan
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div style="text-align: center">
+                        {{$users->links("vendor.pagination.bootstrap-5")}}
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-    </section>  
+</section>  
 
 <script>
     //ajax delete

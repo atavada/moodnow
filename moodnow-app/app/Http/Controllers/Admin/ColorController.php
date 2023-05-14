@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class ColorController extends Controller
 {
     /**
+     * __construct
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['permission:colors.index|colors.create|colors.edit|colors.delete']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -17,7 +27,7 @@ class ColorController extends Controller
     {
         $colors = Color::latest()->when(request()->q, function($colors) {
             $colors = $colors->where('name', 'like', '%'. request()->q . '%');
-        })->paginate(10);
+        })->paginate(5);
 
         return view('admin.color.index', compact('colors'));
     }
@@ -32,7 +42,7 @@ class ColorController extends Controller
         return view('admin.color.create');
     }
 
-     /**
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,14 +64,14 @@ class ColorController extends Controller
             
         if($color) {
             //redirect dengan pesan sukses
-            return redirect()->route('admin.color.index')->with(['success' => 'Warna Berhasil Disimpan!']);
+            return redirect()->route('admin.color.index')->with(['success' => 'Data Berhasil Disimpan!']);
         } else {
             //redirect dengan pesan error
-            return redirect()->route('admin.color.index')->with(['error' => 'Warnz Gagal Disimpan!']);
+            return redirect()->route('admin.color.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
-     /**
+    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
@@ -96,10 +106,10 @@ class ColorController extends Controller
                 
         if($color){
             //redirect dengan pesan sukses
-            return redirect()->route('admin.color.index')->with(['success' => 'Warna Berhasil Diupdate!']);
+            return redirect()->route('admin.color.index')->with(['success' => 'Data Berhasil Diupdate!']);
         }else{
             //redirect dengan pesan error
-            return redirect()->route('admin.color.index')->with(['error' => 'Warna Gagal Diupdate!']);
+            return redirect()->route('admin.color.index')->with(['error' => 'Data Gagal Diupdate!']);
         }
     }
 

@@ -1,5 +1,4 @@
-@extends('layouts.dashboard')
-@section('title', 'Consultation')
+@extends('layouts.app')
 
 @section('content')
     <section class="section">
@@ -50,24 +49,24 @@
                                       {{ $consul->created_at }}
                                     </td>
                                     <td class="text-center">
-                                        {{-- @can('consuls.edit') --}}
+                                        @can('consuls.edit')
                                             <a href="{{ route('admin.consul.edit', $consul->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                        {{-- @endcan
-                                        @can('consuls.delete') --}}
+                                        @endcan
+                                        @can('consuls.delete')
                                             <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $consul->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                        {{-- @endcan --}}
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        {{-- <div style="text-align: center">
-                            {{$consuls->links("vendor.pagination.bootstrap-4")}}
-                        </div> --}}
+                        <div style="text-align: center">
+                            {{ $consuls->links("vendor.pagination.bootstrap-5") }}
+                        </div>
                     </div>
                 </div>
             </div>

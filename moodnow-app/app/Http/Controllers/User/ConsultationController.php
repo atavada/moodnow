@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\Auth;
 class ConsultationController extends Controller
 {
     /**
+     * __construct
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware(['permission:consuls.create|consuls.delete']);
+    }
+
+    /**
      * index
      *
      * @return void
@@ -57,6 +68,28 @@ class ConsultationController extends Controller
         } else {
             //redirect dengan pesan error
             return redirect()->route('user.consul')->with(['error' => 'Data Gagal Disimpan!']);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $consul = Consul::findOrFail($id);
+        $consul->delete();
+
+        if($consul){
+            return response()->json([
+                'status' => 'success'
+            ]);
+        }else{
+            return response()->json([
+                'status' => 'error'
+            ]);
         }
     }
 }

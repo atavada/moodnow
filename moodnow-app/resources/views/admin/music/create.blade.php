@@ -1,5 +1,4 @@
-@extends('layouts.dashboard')
-@section('title', 'Music')
+@extends('layouts.app')
 
 @section('content')
     <section class="section">
@@ -44,8 +43,7 @@
 
                         <div class="form-group">
                             <label>EMBED</label>
-                            <input type="text" name="embed" value="{{ old('embed') }}" placeholder="Masukkan Link Lagu"
-                                class="form-control @error('embed') is-invalid @enderror">
+                            <textarea class="form-control embed @error('embed') is-invalid @enderror" name="embed" placeholder="Masukkan Link Lagu"  style="height: 200px;">{!! old('embed') !!}</textarea>
 
                             @error('embed')
                             <div class="invalid-feedback" style="display: block">
