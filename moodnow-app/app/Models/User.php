@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function consul()
     {
         return $this->hasMany(Consul::class);
+    }
+
+    public function userMood()
+    {
+        return $this->hasMany(UserMood::class);
     }
 }

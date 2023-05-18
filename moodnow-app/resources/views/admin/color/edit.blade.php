@@ -10,15 +10,31 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-unlock"></i>Edit Color</h4>
+                    <h4><i class="fas fa-unlock"></i> Edit Color</h4>
                 </div>
 
                 <div class="card-body">
                     <form action="{{ route('admin.color.update', $color->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+
                         <div class="form-group">
-                            <label>NAME</label>
+                            <label>MOOD</label>
+                            <select class="form-control select-mood @error('mood') is-invalid @enderror" name="mood">
+                                <option value="">--</option>
+                                @foreach ($quizs as $quiz)
+                                    <option value="{{ $quiz->mood }}" {{ old('mood', $quiz->mood) == $color->mood ? 'selected' : '' }}>{{ $quiz->mood }}</option>
+                                @endforeach
+                            </select>
+                            @error('mood')
+                            <div class="invalid-feedback" style="display: block">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>NAME COLOR</label>
                             <input type="text" name="name" value="{{ old('name', $color->name) }}"
                                 placeholder="Masukkan Nama Warna"
                                 class="form-control @error('name') is-invalid @enderror">
@@ -36,18 +52,6 @@
                                 placeholder="Masukkan Kode Warna" class="@error('hex') is-invalid @enderror">
 
                             @error('hex')
-                            <div class="invalid-feedback" style="display: block">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label>OUTPUT</label>
-                            <input type="text" name="output" value="{{ old('output', $color->output) }}"
-                                placeholder="Masukkan Output" class="form-control @error('output') is-invalid @enderror">
-
-                            @error('output')
                             <div class="invalid-feedback" style="display: block">
                                 {{ $message }}
                             </div>

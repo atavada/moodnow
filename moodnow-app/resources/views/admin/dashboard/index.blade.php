@@ -6,6 +6,7 @@
         <h1>Dashboard</h1>
     </div>
       <div class="row">
+
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
           <div class="card card-statistic-1">
             <div class="card-icon bg-primary">
@@ -16,11 +17,15 @@
                 <h4>Users Total</h4>
               </div>
               <div class="card-body">
-                {{ App\Models\User::count() ?? '0' }}
+                {{ App\Models\User::whereHas('roles', function($query) {
+                  $query->where('name', 'user');
+              })->count() }}
               </div>
             </div>
           </div>
         </div>
+
+        @can('musics.index')
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
           <div class="card card-statistic-1">
             <div class="card-icon bg-danger">
@@ -36,6 +41,9 @@
             </div>
           </div>
         </div>
+        @endcan
+
+        @can('colors.index')
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
           <div class="card card-statistic-1">
             <div class="card-icon bg-warning">
@@ -51,6 +59,9 @@
             </div>
           </div>
         </div>
+        @endcan
+        
+        @can('consuls.index')
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
           <div class="card card-statistic-1">
             <div class="card-icon bg-success">
@@ -66,6 +77,7 @@
             </div>
           </div>
         </div>
+        @endcan
       </div>
   </section>
 @endsection

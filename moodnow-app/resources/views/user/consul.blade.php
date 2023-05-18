@@ -23,66 +23,48 @@
     <!-- /page title -->
 
     <!-- consul -->
-    <section class="section section-on-footer" data-background="{{ asset('kroos/images/backgrounds/bg-dots.png') }}">
+    <section class="section" data-background="{{ asset('kroos/images/backgrounds/bg-dots.png') }}">
         <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-            <h2 class="section-title">Hi ada apa denganmu?</h2>
+                <h2 class="section-title">Hi ada apa denganmu?</h2>
             </div>
             <div class="col-lg-8 mx-auto">
             <div class="bg-white rounded text-center p-5 shadow-down">
-                @can('consuls.create')
-                    <h4 class="mb-80">Chat dengan Sobat MoodNow</h4>
-                    <form action="{{ route('user.consul.store') }}" class="row" method="POST">
-                        @csrf
+                <h4 class="mb-80">Chat dengan Sobat MoodNow</h4>
+                <form action="{{ route('user.consul.store') }}" class="row" method="POST">
+                    @csrf
 
-                        <div class="col-12">
-                            <textarea name="question" id="question" class="form-control px-0 mb-3"
-                            placeholder="Tulis pesan yang kamu inginkan" value="{{ old('question') }}"
-                            class="@error('question') is-invalid @enderror"></textarea>
+                    <div class="col-12">
+                        <textarea name="question" id="question" class="form-control px-0 mb-3"
+                        placeholder="Tulis pesan yang kamu inginkan" value="{{ old('question') }}"
+                        class="@error('question') is-invalid @enderror"></textarea>
 
-                            @error('question')
-                                <div class="invalid-feedback mb-3" style="display: block">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="col-lg-6 col-10 mx-auto">
-                            <button class="btn btn-primary w-100" type="submit">send</button>
-                        </div>
-                    </form>
-                @endcan
+                        @error('question')
+                            <div class="invalid-feedback mb-3" style="display: block">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-lg-6 col-10 mx-auto">
+                        <button class="btn btn-primary w-100" type="submit">send</button>
+                    </div>
+                </form>
             </div>
             <div class="bg-white rounded text-center p-5 shadow-down mt-5">
                 <h4 class="mb-80">History</h4>
                 <div class="col-12">
                     <ol class="list-group">
                         <table class="table">
-                            <thead>
-                              <tr>
-                                {{-- <th>Conversation</th> --}}
-                                {{-- @can('consuls.delete')
-                                  <th>Action</th>
-                                @endcan --}}
-                              </tr>
-                            </thead>
-                            <tbody>
                         @foreach ($consuls->where('user_id', auth()->id()) as $no => $consul)
                             <tr>
-                            <td><b>Question : </b>{{ $consul->question }}
-                                <br>
-                            <b>Answer : </b>{{ $consul->answer }}</td>
-                            {{-- @can('consuls.delete')
-                                <td>
-                                    <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $consul->id }}">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </td>
-                            @endcan --}}
+                            <td>
+                                Question : {{ $consul->question }}
+                            <br>
+                                Answer : {{ $consul->answer }}</td>
                             </tr>                        
                         @endforeach
-                        </tbody>
-                    </table>  
+                        </table>  
                     </ol>
                 </div>
             </div>

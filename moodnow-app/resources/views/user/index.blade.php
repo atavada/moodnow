@@ -92,7 +92,7 @@
             identify patterns in your mood, and track changes over time. It's a powerful tool for anyone 
             looking to improve their mental well-being.
           </p>
-          <a href="{{ route('detect') }}" class="btn btn-artistic"><button class="btn btn-sm btn-light w-100">Take the Questionnaire</button></a>
+          <a href="{{ route('user.detect.index') }}" class="btn btn-artistic"><button class="btn btn-sm btn-light w-100">Detect Your Mood Now!</button></a>
         </div>
         <!-- slider-item -->
         <div class="text-center testimonial-content">

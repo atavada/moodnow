@@ -36,7 +36,8 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">NAME</th>
+                                <th scope="col">MOOD</th>
+                                <th scope="col" style="text-align: center;width: 20%">NAME COLOR</th>
                                 <th scope="col" style="text-align: center">COLOR HEX</th>
                                 <th scope="col" style="text-align: center">OUTPUT</th>
                                 <th scope="col" style="width: 15%;text-align: center">ACTION</th>
@@ -44,24 +45,25 @@
                             </thead>
                             <tbody>
                             @foreach ($colors as $no => $color)
-                                    <tr>
-                                        <th scope="row" style="text-align: center">{{ ++$no + ($colors->currentPage()-1) * $colors->perPage() }}</th>
-                                        <td>{{ $color->name }}</td>
-                                        <td style="background-color: {{ $color->hex }};text-align: center">{{ $color->hex }}</td>
-                                        <td style="text-align: center">{{ $color->output }}</td>
-                                        <td class="text-center">
-                                            @can('colors.edit')
-                                                <a href="{{ route('admin.color.edit', $color->id) }}" class="btn btn-sm btn-primary">
-                                                    <i class="fa fa-pencil-alt"></i>
-                                                </a>
-                                            @endcan
-                                            @can('colors.delete')
-                                                <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $color->id }}">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            @endcan
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <th scope="row" style="text-align: center">{{ ++$no + ($colors->currentPage()-1) * $colors->perPage() }}</th>
+                                    <td>{{ $color->mood }}</td>
+                                    <td style="text-align: center">{{ $color->name }}</td>
+                                    <td style="background-color: {{ $color->hex }};text-align: center">{{ $color->hex }}</td>
+                                    <td style="text-align: center">{{ ($color->output) == 'mood_baik' ? 'Mood Baik' : 'Mood Buruk' }}</td>
+                                    <td class="text-center">
+                                        @can('colors.edit')
+                                            <a href="{{ route('admin.color.edit', $color->id) }}" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                        @endcan
+                                        @can('colors.delete')
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $color->id }}">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        @endcan
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

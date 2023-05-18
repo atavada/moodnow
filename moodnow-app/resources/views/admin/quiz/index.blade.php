@@ -38,6 +38,8 @@
                         <tr>
                             <th scope="col" style="text-align: center;width: 6%">NO.</th>
                             <th scope="col">QUESTION</th>
+                            <th scope="col" style="text-align: center;width: 20%">MOOD</th>
+                            <th scope="col" style="text-align: center;width: 20%">OUTPUT</th>
                             <th scope="col" style="width: 15%;text-align: center">ACTION</th>
                         </tr>
                         </thead>
@@ -45,7 +47,9 @@
                         @foreach ($quizs as $no => $quiz)
                             <tr>
                                 <th scope="row" style="text-align: center">{{ ++$no + ($quizs->currentPage()-1) * $quizs->perPage() }}</th>
-                                <td>{{ $quiz->title }}</td>
+                                <td>{{ $quiz->question }}</td>
+                                <td style="text-align: center">{{ $quiz->mood }}</td>
+                                <td style="text-align: center">{{ ($quiz->output) == 'mood_baik' ? 'Mood Baik' : 'Mood Buruk' }}</td>
                                 <td class="text-center">
                                     @can('quizs.edit')
                                         <a href="{{ route('admin.quiz.edit', $quiz->id) }}" class="btn btn-sm btn-primary">

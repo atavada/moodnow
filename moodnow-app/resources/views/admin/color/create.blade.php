@@ -18,7 +18,22 @@
                         @csrf
 
                         <div class="form-group">
-                            <label>NAME</label>
+                            <label>MOOD</label>
+                            <select class="form-control select-mood @error('mood') is-invalid @enderror" name="quiz_id">
+                                <option value="">--</option>
+                                @foreach ($quizs as $quiz)
+                                    <option value="{{ $quiz->id }}">{{ $quiz->mood }}</option>
+                                @endforeach
+                            </select>
+                            @error('mood')
+                            <div class="invalid-feedback" style="display: block">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label>NAME COLOR</label>
                             <input type="text" name="name" value="{{ old('name') }}" placeholder="Masukkan Warna Baru"
                                 class="form-control @error('name') is-invalid @enderror">
 
@@ -35,18 +50,6 @@
                                 class="@error('hex') is-invalid @enderror">
 
                             @error('hex')
-                            <div class="invalid-feedback" style="display: block">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label>OUTPUT</label>
-                            <input type="text" name="output" value="{{ old('output') }}" placeholder="Masukkan Output"
-                                class="form-control @error('output') is-invalid @enderror">
-
-                            @error('output')
                             <div class="invalid-feedback" style="display: block">
                                 {{ $message }}
                             </div>

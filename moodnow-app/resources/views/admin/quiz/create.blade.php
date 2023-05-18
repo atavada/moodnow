@@ -19,9 +19,35 @@
 
                     <div class="form-group">
                         <label>QUESTION</label>
-                        <input type="text" name="title" value="{{ old('title') }}" placeholder="Masukkan Question" class="form-control @error('title') is-invalid @enderror">
+                        <input type="text" name="question" value="{{ old('question') }}" placeholder="Masukkan Question" class="form-control @error('question') is-invalid @enderror">
 
-                        @error('title')
+                        @error('question')
+                        <div class="invalid-feedback" style="display: block">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label>MOOD</label>
+                        <input type="text" name="mood" value="{{ old('mood') }}" placeholder="Masukkan Mood" class="form-control @error('mood') is-invalid @enderror">
+
+                        @error('mood')
+                        <div class="invalid-feedback" style="display: block">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label>OUTPUT JIKA LEBIH DARI 5 POIN</label>
+                        <select class="form-control @error('output') is-invalid @enderror" name="output">
+                            <option value="">--</option>
+                            <option value="mood_baik">Mood Baik</option>
+                            <option value="mood_buruk">Mood Buruk</option>
+                        </select>
+
+                        @error('output')
                         <div class="invalid-feedback" style="display: block">
                             {{ $message }}
                         </div>

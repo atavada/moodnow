@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Color;
+use App\Models\Questionnaire;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
@@ -39,7 +40,8 @@ class ColorController extends Controller
      */
     public function create()
     {
-        return view('admin.color.create');
+        $quizs = Questionnaire::latest()->get();
+        return view('admin.color.create', compact('quizs'));
     }
 
     /**
@@ -48,20 +50,22 @@ class ColorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Questionnaire $quiz)
     {
         $this->validate($request, [
             'name' => 'required','unique:colors',
             'hex' => 'required', 
-            'output' => 'required'
         ]);
 
+        $quiz = Questionnaire::findOrFail($request->input('quiz_id'));
         $color = Color::create([
             'name' => $request->input('name'),
             'hex' => $request->input('hex'),
-            'output' => $request->input('output')
+            'quiz_id' => $quiz->id,
+            'mood' => $quiz->mood,
+            'output' => $quiz->output
         ]);
-            
+
         if($color) {
             //redirect dengan pesan sukses
             return redirect()->route('admin.color.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -79,7 +83,8 @@ class ColorController extends Controller
      */
     public function edit(Color $color)
     {
-        return view('admin.color.edit', compact('color'));
+        $quizs = Questionnaire::latest()->get();
+        return view('admin.color.edit', compact('color', 'quizs'));
     }
 
     /**
@@ -94,14 +99,12 @@ class ColorController extends Controller
         $this->validate($request, [
             'name' => 'required','unique:colors'.$color->id,
             'hex' => 'required', 
-            'output' => 'required'
         ]);
 
         $color = Color::findOrFail($color->id);
         $color->update([
             'name' => $request->input('name'),
             'hex' => $request->input('hex'),
-            'output' => $request->input('output')
         ]);
                 
         if($color){

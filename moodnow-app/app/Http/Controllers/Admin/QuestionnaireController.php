@@ -26,7 +26,7 @@ class QuestionnaireController extends Controller
     public function index()
     {
         $quizs = Questionnaire::latest()->when(request()->q, function($quizs) {
-            $quizs = $quizs->where('title', 'like', '%'. request()->q . '%');
+            $quizs = $quizs->where('question', 'like', '%'. request()->q . '%');
         })->paginate(10);
 
         return view('admin.quiz.index', compact('quizs'));
@@ -51,22 +51,27 @@ class QuestionnaireController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|unique:questionnaires'
+            'question' => 'required|unique:questionnaires',
+            'mood' => 'required',
+            'output' => 'required'
         ]);
 
         $quiz = Questionnaire::create([
-            'title' => $request->input('title'),
+            'question' => $request->input('question'),
+            'mood' => $request->input('mood'),
+            'output' => $request->input('output')
         ]);
 
-        if($quiz){
+        if ($quiz){
             //redirect dengan pesan sukses
             return redirect()->route('admin.quiz.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else{
+        } else {
             //redirect dengan pesan error
             return redirect()->route('admin.quiz.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
-      /**
+    
+    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
@@ -81,18 +86,21 @@ class QuestionnaireController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Questionnaire $quiz)
     {
         $this->validate($request, [
-            'title' => 'required|unique:questionnaires'
+            'question' => 'required|unique:questionnaires,question,'.$quiz->id,
+            'mood' => 'required',
+            'output' => 'required'
         ]);
 
         $quiz = Questionnaire::findOrFail($quiz->id);
         $quiz->update([
-            'title' => $request->input('title'),
+            'question' => $request->input('question'),
+            'mood' => $request->input('mood'),
+            'output' => $request->input('output')
         ]);
                 
         if($quiz){

@@ -22,7 +22,7 @@
 <!-- /page title -->
 
 <!-- contact -->
-<section class="section section-on-footer" data-background="{{ asset('kroos/images/backgrounds/bg-dots.png') }}">
+<section class="section" data-background="{{ asset('kroos/images/backgrounds/bg-dots.png') }}">
     <div class="container">
         <div class="row">
         <div class="col-lg-8 mx-auto">

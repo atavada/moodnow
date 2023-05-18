@@ -10,4 +10,9 @@ class Music extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = 'musics';
+
+    public function questionnaire()
+    {
+        return $this->belongsToMany(Questionnaire::class);
+    }
 }

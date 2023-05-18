@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('quiz_id')->unsigned();
             $table->string('name');
             $table->string('hex');
+            $table->string('mood');
             $table->string('output');
             $table->timestamps();
         });

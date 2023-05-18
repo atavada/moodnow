@@ -36,7 +36,6 @@
     <link href="{{ asset('error/style.css') }}" rel="stylesheet">
 
     <!-- Addition Stylesheet -->
-
     <link href="{{ asset('error/error.css') }}" rel="stylesheet">
 
 </head>

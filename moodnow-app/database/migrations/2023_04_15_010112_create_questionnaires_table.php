@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('questionnaires', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('question');
+            $table->string('mood');
+            $table->string('output');
             $table->timestamps();
         });
     }

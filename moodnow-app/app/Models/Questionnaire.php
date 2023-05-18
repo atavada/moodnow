@@ -9,4 +9,14 @@ class Questionnaire extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function color()
+    {
+        return $this->hasOne(Color::class);
+    }
+    
+    public function music()
+    {
+        return $this->hasMany(Music::class);
+    }
 }

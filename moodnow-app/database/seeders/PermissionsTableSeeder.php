@@ -22,12 +22,6 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'quizs.edit']);
         Permission::create(['name' => 'quizs.delete']);
 
-        //permission for analysisMoods
-        Permission::create(['name' => 'analysisMoods.index']);
-        Permission::create(['name' => 'analysisMoods.create']);
-        Permission::create(['name' => 'analysisMoods.edit']);
-        Permission::create(['name' => 'analysisMoods.delete']);
-
         //permission for colors
         Permission::create(['name' => 'colors.index']);
         Permission::create(['name' => 'colors.create']);
@@ -48,7 +42,7 @@ class PermissionsTableSeeder extends Seeder
 
         //permission for roles
         Permission::create(['name' => 'roles.index']);
-        Permission::create(['name' => 'roles.create']);
+        // Permission::create(['name' => 'roles.create']);
         Permission::create(['name' => 'roles.edit']);
         Permission::create(['name' => 'roles.delete']);
         
@@ -66,11 +60,5 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'detects.create']);
         Permission::create(['name' => 'detects.edit']);
         Permission::create(['name' => 'detects.delete']);
-
-        //permission for histories
-        Permission::create(['name' => 'histories.index']);
-        Permission::create(['name' => 'histories.create']);
-        Permission::create(['name' => 'histories.edit']); 
-        Permission::create(['name' => 'histories.delete']);
     }
 }

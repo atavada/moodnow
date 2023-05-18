@@ -82,12 +82,6 @@
                       </li>
                       @endcan
         
-                      @can('analysisMoods.index')
-                      <li class="{{ setActive('analysisMood') }}">
-                        <a href="{{ route('admin.analysisMood.index') }}" class="nav-link"><i class="fas fa-cogs"></i><span>Mood Control</span></a>
-                      </li>
-                      @endcan
-        
                       @can('colors.index')
                       <li class="{{ setActive('color') }}">
                         <a href="{{ route('admin.color.index') }}" class="nav-link"><i class="fas fa-paint-brush"></i><span>Color Managed</span></a>

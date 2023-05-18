@@ -72,10 +72,10 @@
                     @endif
                     @else
                         <li class="nav-item {{ setActive('detect') }}">
-                            <a class="nav-link" href="{{ route('detect') }}">Detect Mood</a>
+                            <a class="nav-link" href="{{ route('user.detect.index') }}">Detect Mood</a>
                         </li>
-                        <li class="nav-item {{ setActive('history') }}">
-                            <a class="nav-link" href="#">Tracker</a>
+                        <li class="nav-item {{ setActive('result') }}">
+                            <a class="nav-link" href="{{ route('user.result') }}">Tracker</a>
                         </li>
                         <li class="nav-item {{ setActive('consul-user') }}">
                             <a class="nav-link" href="{{ route('user.consul') }}">Consultation</a>

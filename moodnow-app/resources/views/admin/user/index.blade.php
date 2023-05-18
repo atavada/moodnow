@@ -38,11 +38,13 @@
                             <th scope="col" style="text-align: center;width: 6%">NO.</th>
                             <th scope="col">USERNAME</th>
                             <th scope="col">ROLE</th>
+                            <th scope="col" style="width: 15%;text-align: center">CREATED AT</th>
                             <th scope="col" style="width: 15%;text-align: center">ACTION</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($users as $no => $user)
+                            @unless ($user->getRoleNames()->contains('user'))
                             <tr>
                                 <th scope="row" style="text-align: center">{{ ++$no + ($users->currentPage()-1) * $users->perPage() }}</th>
                                 <td>{{ $user->name }}</td>
@@ -53,6 +55,7 @@
                                         @endforeach
                                     @endif
                                 </td>
+                                <td style="text-align: center">{{ $user->created_at }}</td>
                                 <td class="text-center">
                                     @can('users.edit')
                                         <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-sm btn-primary">
@@ -67,6 +70,7 @@
                                     @endcan
                                 </td>
                             </tr>
+                            @endunless
                         @endforeach
                         </tbody>
                     </table>

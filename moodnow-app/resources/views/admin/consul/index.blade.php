@@ -34,7 +34,8 @@
                                 <th scope="col">USERNAME</th>
                                 <th scope="col">QUESTION</th>
                                 <th scope="col">ANSWER</th>
-                                <th scope="col" style="width: 15%;text-align: center">CREATED AT</th>
+                                <th scope="col" style="width: 10%;text-align: center">CREATED AT</th>
+                                <th scope="col" style="width: 10%;text-align: center">ANSWERED AT</th>
                                 <th scope="col" style="width: 15%;text-align: center">ACTION</th>
                             </tr>
                             </thead>
@@ -49,9 +50,12 @@
                                       {{ $consul->created_at }}
                                     </td>
                                     <td class="text-center">
+                                      {{ $consul->updated_at }}
+                                    </td>
+                                    <td class="text-center">
                                         @can('consuls.edit')
                                             <a href="{{ route('admin.consul.edit', $consul->id) }}" class="btn btn-sm btn-primary">
-                                                <i class="fa fa-pencil-alt"></i>
+                                                Answer
                                             </a>
                                         @endcan
                                         @can('consuls.delete')

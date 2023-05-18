@@ -16,5 +16,17 @@ class RolesTableSeeder extends Seeder
         Role::create([
             'name' => 'admin'
         ]);
+
+        Role::create([
+            'name' => 'operator'
+        ]);
+
+        Role::create([
+            'name' => 'sobat-moodnow'
+        ]);
+
+        Role::create([
+            'name' => 'user'
+        ]);
     }
 }
