@@ -26,10 +26,11 @@ Route::group(['middleware' => 'role:admin|sobat-moodnow|operator|user'], functio
 
     // detect
     Route::get('/detect', [App\Http\Controllers\User\DetectController::class, 'index'])->name('user.detect.index');
-    Route::get('/detect/quiz', [App\Http\Controllers\User\DetectController::class, 'detectQuiz'])->name('user.detect.detectQuiz');
-    Route::post('/detect/quiz/proses', [App\Http\Controllers\User\DetectController::class, 'prosesQuiz'])->name('user.detect.prosesQuiz');
+    // detect quiz
+    Route::get('/detect/your-mood', [App\Http\Controllers\User\DetectController::class, 'detectMood'])->name('user.detect.detectMood');
+    Route::post('/detect/your-mood/proses', [App\Http\Controllers\User\DetectController::class, 'prosesDetect'])->name('user.detect.prosesDetect');
+    // detect result
     Route::get('/detect/result', [App\Http\Controllers\User\DetectController::class, 'result'])->name('user.detect.result');
-    // Route::get('/detect/color', [App\Http\Controllers\User\DetectController::class, 'detectColor'])->name('user.detect.detectColor');
 
     // result
     Route::get('/result', [App\Http\Controllers\User\ResultController::class, 'index'])->name('user.result');

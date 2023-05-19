@@ -37,7 +37,7 @@
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
                                 <th scope="col">TITLE</th>
-                                <th scope="col" style="width: 15%;text-align: center">GENRE</th>
+                                <th scope="col" style="width: 15%;text-align: center">MOOD</th>
                                 <th scope="col" style="width: 40%;text-align: center">EMBED</th>
                                 <th scope="col" style="width: 15%;text-align: center">ACTION</th>
                             </tr>
@@ -47,7 +47,7 @@
                                 <tr>
                                     <th scope="row" style="text-align: center">{{ ++$no + ($musics->currentPage()-1) * $musics->perPage() }}</th>
                                     <td>{{ $music->title }}</td>
-                                    <td style="text-align: center">{{ $music->genre }}</td>
+                                    <td style="text-align: center">{{ ($music->output) == 'mood_baik' ? 'Mood Baik' : 'Mood Buruk' }}</td>
                                     <td class="text-center">
                                        {!! $music->embed !!}
                                     </td>

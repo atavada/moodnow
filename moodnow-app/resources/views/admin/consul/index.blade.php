@@ -50,7 +50,7 @@
                                       {{ $consul->created_at }}
                                     </td>
                                     <td class="text-center">
-                                      {{ $consul->updated_at }}
+                                      {{ ($consul->updated_at == $consul->created_at) ? 'NULL' : $consul->updated_at }}
                                     </td>
                                     <td class="text-center">
                                         @can('consuls.edit')

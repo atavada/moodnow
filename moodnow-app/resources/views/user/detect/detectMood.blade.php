@@ -51,22 +51,44 @@
 
   <section class="section" data-background="{{ asset('kroos/images/backgrounds/bg-dots.png') }}">
     <div class="container">
-        <form action="{{ route('user.detect.prosesQuiz') }}" method="POST">
+        <h3 class="text-center mb-3">Rate berdasarkan quis</h3>
+        <form action="{{ route('user.detect.prosesDetect') }}" method="POST">
             @csrf
-            @foreach ($quizs as $key => $quiz)
-            <div class="bg-white rounded text-center p-3 shadow mb-3">
-                <h4>Quiz {{ $key + 1 }}</h4>
-                <p class="mb-3">{{ $quiz->question }}</p>
-                <input type="hidden" name="quiz_id[]" value="{{ $quiz->id }}">
-                <input class="range" type="range" name="range[]" value="{{ old('range'.$key, 5) }}" min="0" max="10" onchange="rangeSlide(this, {{ $key }})" onmousemove="rangeSlide(this, {{ $key }})">
-                <h4><span id="rangeValue{{ $key }}">{{ old('range'.$key, 5) }}</span></h4>
+              @foreach ($quizs as $key => $quiz)
+                <div class="bg-white rounded text-center p-3 shadow mb-3">
+                    <h4>Quiz {{ $key + 1 }}</h4>
+                    <p class="mb-3">{{ $quiz->question }}</p>
+                    <input type="hidden" name="quiz_id[]" value="{{ $quiz->id }}">
+                    <input class="range" type="range" name="range[]" value="{{ old('range'.$key, 5) }}" min="0" max="10" onchange="rangeSlide(this, {{ $key }})" onmousemove="rangeSlide(this, {{ $key }})">
+                    <h4><span id="rangeValue{{ $key }}">{{ old('range'.$key, 5) }}</span></h4>
+                </div>
+              @endforeach
+              <h3 class="text-center mt-5 mb-3">Pilih warna yang menggambarkan kamu saat ini</h3>
+              <div class="row mb-3">
+              @foreach ($colors as $key => $color)
+                <div class="col-12 col-md-6">
+                  <div class="rounded text-center p-3 shadow mb-3 color-card" style="background-color: {{ $color->hex }}">
+                    <input type="radio" name="color" id="color{{ $key }}" value="{{ $color->output }}" style="display: none">
+                    <label class="btn btn-transparent" for="color{{ $key }}" style="color: {{ ($color->hex == '#ffffff') ? 'black' : 'white' }}">{{ $color->name }}</label>
+                  </div>
+                </div>
+              @endforeach
             </div>
-            @endforeach
-
             <button type="submit" class="btn btn-primary float-right">Submit</button>
         </form>
     </div>
   </section>
+
+  <style>
+    .color-card {
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    input[type="radio"]:checked + label {
+      text-decoration: line-through;
+    }
+  </style>
 
 <script type="text/javascript">
     function rangeSlide(rangeInput, key) {

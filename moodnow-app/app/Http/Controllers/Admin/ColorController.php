@@ -50,11 +50,11 @@ class ColorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Questionnaire $quiz)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required','unique:colors',
-            'hex' => 'required', 
+            'hex' => 'required'
         ]);
 
         $quiz = Questionnaire::findOrFail($request->input('quiz_id'));
@@ -98,13 +98,17 @@ class ColorController extends Controller
     {
         $this->validate($request, [
             'name' => 'required','unique:colors'.$color->id,
-            'hex' => 'required', 
+            'hex' => 'required'
         ]);
 
+        $quiz = Questionnaire::findOrFail($request->input('quiz_id'));
         $color = Color::findOrFail($color->id);
         $color->update([
             'name' => $request->input('name'),
             'hex' => $request->input('hex'),
+            'quiz_id' => $quiz->id,
+            'mood' => $quiz->mood,
+            'output' => $quiz->output
         ]);
                 
         if($color){

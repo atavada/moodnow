@@ -27,10 +27,17 @@
             <div class="row">
                 <div class="col-12 mb-5">
                     <h4 class="mb-3">Mood Result</h4>
-                    @if ($userMood->mood_result == 'mood_baik')
-                        <p class="mb-0">Mood kamu sekarang baik baik saja</p>
+                    @if ($user_mood->mood_result == 'mood_baik')
+                        <p class="mb-0">Mood kamu sekarang baik baik saja
+                            <br>
+                            jika kamu merasa ada sesuatu yang ingin diceritakan bisa konsultasi ke sobat moodnow, pasti dijawab tentunya.
+                        </p>
+                        <a href="{{ route('user.consul') }}" class="btn btn-transparent">Consultation</a>
                     @else
-                        <p class="mb-3">Mood kamu sekarang sedang buruk, ada apa dengamu?</p>
+                        <p class="mb-3">Mood kamu sekarang sedang buruk, ada apa dengamu?
+                            <br>
+                            jika kamu merasa ada sesuatu yang ingin diceritakan bisa konsultasi ke sobat moodnow, pasti dijawab tentunya.
+                        </p>
                         <a href="{{ route('user.consul') }}" class="btn btn-transparent">Consultation</a>
                     @endif
                     <a href="{{ route('user.result') }}" class="btn btn-transparent">Go to History</a>
@@ -38,11 +45,11 @@
                 <div class="col-12">
                     <h4 class="mb-3">Music Recommendation</h4>
                     <p>Rekomendasi musik untuk mood kamu saat ini</p>
-                    {{-- @if ($music->output == 'mood_baik')
-                        <p class="mb-0">Mood kamu sekarang baik baik saja</p>
-                    @else
-                        <p class="mb-0">Mood kamu sekarang sedang buruk, ada apa dengamu?</p>
-                    @endif --}}
+                    <div class="pl-5 pr-5">
+                    @foreach ($music as $no => $song)
+                        {!! $song->embed !!}
+                    @endforeach
+                    </div>
                 </div>
             </div>
         </div>

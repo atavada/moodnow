@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('musics', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('quiz_id')->unsigned();
             $table->string('title');
-            $table->string('genre');
+            $table->string('mood');
             $table->text('embed');
+            $table->text('output');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Music;
+use App\Models\Questionnaire;
 use Illuminate\Http\Request;
 
 class MusicController extends Controller
@@ -39,7 +40,8 @@ class MusicController extends Controller
      */
     public function create()
     {
-        return view('admin.music.create');
+        $quizs = Questionnaire::latest()->get();
+        return view('admin.music.create', compact('quizs'));
     }
 
     /**
@@ -52,14 +54,16 @@ class MusicController extends Controller
     {
         $this->validate($request, [
             'title' => 'required','unique:musics',
-            'genre' => 'required', 
             'embed' => 'required'
         ]);
 
+        $quiz = Questionnaire::findOrFail($request->input('quiz_id'));
         $music = Music::create([
             'title' => $request->input('title'),
-            'genre' => $request->input('genre'),
-            'embed' => $request->input('embed')
+            'mood' => $quiz->mood,
+            'embed' => $request->input('embed'),
+            'quiz_id' => $quiz->id,
+            'output' => $quiz->output
         ]);
             
         if($music) {
@@ -79,7 +83,8 @@ class MusicController extends Controller
      */
     public function edit(Music $music)
     {
-        return view('admin.music.edit', compact('music'));
+        $quizs = Questionnaire::latest()->get();
+        return view('admin.music.edit', compact('music', 'quizs'));
     }
 
     /**
@@ -93,15 +98,17 @@ class MusicController extends Controller
     {
         $this->validate($request, [
             'title' => 'required','unique:musics'.$music->id,
-            'genre' => 'required', 
             'embed' => 'required'
         ]);
 
+        $quiz = Questionnaire::findOrFail($request->input('quiz_id'));
         $music = Music::findOrFail($music->id);
         $music->update([
             'title' => $request->input('title'),
-            'genre' => $request->input('genre'),
-            'embed' => $request->input('embed')
+            'mood' => $quiz->mood,
+            'embed' => $request->input('embed'),
+            'quiz_id' => $quiz->id,
+            'output' => $quiz->output
         ]);
                 
         if($music){

@@ -15,20 +15,29 @@ class CreateQuestionnairesSeeder extends Seeder
     {
         $quizs = [
             [
-                'id'=>1,
-               'title'=>'pertanyaan 1',
+               'question'=>'Apakah kamu merasa senang hari ini?',
+               'mood'=>'Senang',
+               'output'=>'mood_baik'
             ],
             [
-                'id'=>2,
-               'title'=>'pertanyaan 2',
+               'question'=>'Apakah kamu merasa cemas atau tertekan?',
+               'mood'=>'Cemas',
+               'output'=>'mood_buruk'
             ],
             [
-                'id'=>3,
-               'title'=>'pertanyaan 3',
+               'question'=>'Apakah kamu merasa bosan?',
+               'mood'=>'Bosen',
+               'output'=>'mood_buruk'
             ],
             [
-                'id'=>4,
-               'title'=>'pertanyaan 4',
+               'question'=>'Apakah kamu merasa lelah atau letih?',
+               'mood'=>'Lelah',
+               'output'=>'mood_buruk'
+            ],
+            [
+               'question'=>'Apakah kamu merasa terhibur?',
+               'mood'=>'Bahagia',
+               'output'=>'mood_baik'
             ],
         ];
     

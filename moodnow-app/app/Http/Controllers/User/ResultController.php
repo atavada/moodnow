@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Music;
 use App\Models\UserMood;
 use Illuminate\Http\Request;
 

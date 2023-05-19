@@ -30,11 +30,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label>GENRE</label>
-                            <input type="text" name="genre" value="{{ old('genre') }}" placeholder="Masukkan Genre Lagu"
-                                class="form-control @error('genre') is-invalid @enderror">
-
-                            @error('genre')
+                            <label>MOOD</label>
+                            <select class="form-control select-mood @error('mood') is-invalid @enderror" name="quiz_id">
+                                <option value="">--</option>
+                                @foreach ($quizs as $quiz)
+                                    <option value="{{ $quiz->id }}">{{ $quiz->mood }}</option>
+                                @endforeach
+                            </select>
+                            @error('mood')
                             <div class="invalid-feedback" style="display: block">
                                 {{ $message }}
                             </div>
@@ -43,7 +46,7 @@
 
                         <div class="form-group">
                             <label>EMBED</label>
-                            <textarea class="form-control embed @error('embed') is-invalid @enderror" name="embed" placeholder="Masukkan Link Lagu"  style="height: 200px;">{!! old('embed') !!}</textarea>
+                            <textarea class="form-control embed @error('embed') is-invalid @enderror" name="embed" placeholder="Masukkan Embed Playlist Lagu"  style="height: 200px;">{!! old('embed') !!}</textarea>
 
                             @error('embed')
                             <div class="invalid-feedback" style="display: block">

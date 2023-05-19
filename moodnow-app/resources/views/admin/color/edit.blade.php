@@ -23,7 +23,7 @@
                             <select class="form-control select-mood @error('mood') is-invalid @enderror" name="mood">
                                 <option value="">--</option>
                                 @foreach ($quizs as $quiz)
-                                    <option value="{{ $quiz->mood }}" {{ old('mood', $quiz->mood) == $color->mood ? 'selected' : '' }}>{{ $quiz->mood }}</option>
+                                    <option value="{{ $quiz->id }}" {{ old('mood', $quiz->mood) == $color->mood ? 'selected' : '' }}>{{ $quiz->mood }}</option>
                                 @endforeach
                             </select>
                             @error('mood')
@@ -58,7 +58,7 @@
                             @enderror
                         </div>
 
-                        <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i>UPDATE</button>
+                        <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i> UPDATE</button>
                         <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
 
                     </form>
