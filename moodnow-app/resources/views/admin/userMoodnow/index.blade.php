@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'User MoodNow')
 
 @section('content')
 <section class="section">
@@ -17,11 +18,6 @@
                 <form action="#" method="GET">
                     <div class="form-group">
                         <div class="input-group mb-3">
-                            @can('users.create')
-                                <div class="input-group-prepend">
-                                    <a href="{{ route('admin.user.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
-                                </div>
-                            @endcan
                             <input type="text" class="form-control" name="q"
                                     placeholder="cari berdasarkan nama user">
                             <div class="input-group-append">

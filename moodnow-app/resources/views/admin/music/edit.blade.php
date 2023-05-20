@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Edit Music')
 
 @section('content')
     <section class="section">
@@ -10,7 +11,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-unlock"></i> Edit Music</h4>
+                    <h4><i class="fas fa-music"></i> Edit Music</h4>
                 </div>
 
                 <div class="card-body">
@@ -37,6 +38,7 @@
                                     <option value="{{ $quiz->id }}" {{ old('mood', $quiz->mood) == $music->mood ? 'selected' : '' }}>{{ $quiz->mood }}</option>
                                 @endforeach
                             </select>
+                            
                             @error('mood')
                             <div class="invalid-feedback" style="display: block">
                                 {{ $message }}

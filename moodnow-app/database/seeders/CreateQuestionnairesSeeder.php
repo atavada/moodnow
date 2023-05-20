@@ -15,7 +15,7 @@ class CreateQuestionnairesSeeder extends Seeder
     {
         $quizs = [
             [
-               'question'=>'Apakah kamu merasa senang hari ini?',
+               'question'=>'Apakah kamu merasa senang?',
                'mood'=>'Senang',
                'output'=>'mood_baik'
             ],
@@ -38,6 +38,11 @@ class CreateQuestionnairesSeeder extends Seeder
                'question'=>'Apakah kamu merasa terhibur?',
                'mood'=>'Bahagia',
                'output'=>'mood_baik'
+            ],
+            [
+               'question'=>'Apakah kamu merasa marah?',
+               'mood'=>'Marah',
+               'output'=>'mood_buruk'
             ],
         ];
     

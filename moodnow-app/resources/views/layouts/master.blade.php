@@ -5,7 +5,7 @@
     <!-- Basic Page Needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>MoodNow &dash; Detect Your Mood</title>
+    <title>Moodnow @yield('title')</title>
 
     <!-- Mobile Specific Metas
     ================================================== -->
@@ -57,8 +57,8 @@
                 <li class="nav-item {{ setActive('about') }}">
                     <a class="nav-link" href="{{ route('about') }}">About</a>
                 </li>
-                <li class="nav-item {{ setActive('contact') }}">
-                    <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                <li class="nav-item {{ setActive('contact-us') }}">
+                    <a class="nav-link" href="{{ route('user.contact.index') }}">Contact</a>
                 </li>
                 
                 @guest

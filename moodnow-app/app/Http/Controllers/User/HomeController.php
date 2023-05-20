@@ -9,8 +9,6 @@ class HomeController extends Controller
 {
     /**
      * index
-     *
-     * @return void
      */
     public function index()
     {

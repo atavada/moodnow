@@ -10,8 +10,6 @@ class PermissionController extends Controller
 {
     /**
      * __construct
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -20,8 +18,6 @@ class PermissionController extends Controller
 
     /**
      * function index
-     *
-     * @return void
      */
     public function index()
     {

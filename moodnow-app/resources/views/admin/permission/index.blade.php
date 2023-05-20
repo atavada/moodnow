@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Permission')
 
 @section('content')
 <section class="section">
@@ -50,6 +51,5 @@
             </div>
         </div>
     </div>
-
 </section>
 @stop

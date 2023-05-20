@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Answer Consultation')
 
 @section('content')
     <section class="section">
@@ -10,7 +11,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-unlock"></i> Jawab MoodNoow</h4>
+                    <h4><i class="fas fa-comments"></i> Jawab MoodNoow</h4>
                 </div>
 
                 <div class="card-body">
@@ -39,7 +40,7 @@
                             @enderror
                         </div>
 
-                        <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i>UPDATE</button>
+                        <button class="btn btn-primary mr-1 btn-submit" type="submit"><i class="fa fa-paper-plane"></i> UPDATE</button>
                         <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
 
                     </form>

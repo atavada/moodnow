@@ -11,8 +11,6 @@ class ConsulController extends Controller
 {
     /**
      * __construct
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -21,8 +19,6 @@ class ConsulController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -35,9 +31,6 @@ class ConsulController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit(Consul $consul)
     {
@@ -47,10 +40,6 @@ class ConsulController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Consul $consul)
     {
@@ -74,9 +63,6 @@ class ConsulController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 // Landing Page
 Route::get('/', [App\Http\Controllers\User\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\User\AboutController::class, 'index'])->name('about');
-Route::get('/contact', [App\Http\Controllers\User\ContactController::class, 'index'])->name('contact');
+Route::get('/contact-us', [App\Http\Controllers\User\ContactController::class, 'index'])->name('user.contact.index');
+Route::post('/contact-us/proses', [App\Http\Controllers\User\ContactController::class, 'store'])->name('user.contact.store');
 
 // Auth Login Register
 Auth::routes();
@@ -26,14 +27,17 @@ Route::group(['middleware' => 'role:admin|sobat-moodnow|operator|user'], functio
 
     // detect
     Route::get('/detect', [App\Http\Controllers\User\DetectController::class, 'index'])->name('user.detect.index');
+    
     // detect quiz
     Route::get('/detect/your-mood', [App\Http\Controllers\User\DetectController::class, 'detectMood'])->name('user.detect.detectMood');
     Route::post('/detect/your-mood/proses', [App\Http\Controllers\User\DetectController::class, 'prosesDetect'])->name('user.detect.prosesDetect');
+    
     // detect result
     Route::get('/detect/result', [App\Http\Controllers\User\DetectController::class, 'result'])->name('user.detect.result');
 
     // result
     Route::get('/result', [App\Http\Controllers\User\ResultController::class, 'index'])->name('user.result');
+    Route::delete('/result/delete/{id}', [App\Http\Controllers\User\ResultController::class, 'destroy'])->name('user.result.destroy');
 
     // consul
     Route::get('/consul-user', [App\Http\Controllers\User\ConsultationController::class, 'index'])->name('user.consul');
@@ -66,6 +70,9 @@ Route::group(['middleware' => 'role:admin|sobat-moodnow|operator'], function(){
     
     // musics
     Route::resource('/music', App\Http\Controllers\Admin\MusicController::class, ['except' => 'show' ,'as' => 'admin']);
+
+    // contact
+    Route::resource('/contact', App\Http\Controllers\Admin\ContactController::class, ['except' => 'show' ,'as' => 'admin']);
 
     // consuls
     Route::resource('/consul', App\Http\Controllers\Admin\ConsulController::class, ['except' => 'show' ,'as' => 'admin']);

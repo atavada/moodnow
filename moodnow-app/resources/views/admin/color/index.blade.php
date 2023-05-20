@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Color Managed')
 
 @section('content')
     <section class="section">

@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', '— Result')
 
 @section('content')
 <!-- page title -->

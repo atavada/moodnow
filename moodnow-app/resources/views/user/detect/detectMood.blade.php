@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', '— Quiz and Color')
 
 @section('content')
 <style>

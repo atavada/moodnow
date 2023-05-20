@@ -9,8 +9,6 @@ class DashboardController extends Controller
 {   
     /**
     * __construct
-    *
-    * @return void
     */
    public function __construct()
    {
@@ -19,8 +17,6 @@ class DashboardController extends Controller
 
     /**
      * index
-     *
-     * @return void
      */
     public function index()
     {

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Create User Admin')
 
 @section('content')
 <section class="section">
@@ -10,7 +11,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h4><i class="fas fa-unlock"></i> Tambah User</h4>
+                <h4><i class="fas fa-user"></i> Tambah User</h4>
             </div>
 
             <div class="card-body">

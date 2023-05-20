@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Edit Role')
 
 @section('content')
 <section class="section">

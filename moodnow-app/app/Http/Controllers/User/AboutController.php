@@ -9,8 +9,6 @@ class AboutController extends Controller
 {
     /**
      * index
-     *
-     * @return void
      */
     public function index()
     {

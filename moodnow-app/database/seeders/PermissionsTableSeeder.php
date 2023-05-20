@@ -34,6 +34,10 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'musics.edit']);
         Permission::create(['name' => 'musics.delete']);
 
+        //permission for contacts
+        Permission::create(['name' => 'contacts.index']);
+        Permission::create(['name' => 'contacts.delete']);
+
         //permission for consuls
         Permission::create(['name' => 'consuls.index']);
         Permission::create(['name' => 'consuls.create']);
@@ -42,7 +46,6 @@ class PermissionsTableSeeder extends Seeder
 
         //permission for roles
         Permission::create(['name' => 'roles.index']);
-        // Permission::create(['name' => 'roles.create']);
         Permission::create(['name' => 'roles.edit']);
         Permission::create(['name' => 'roles.delete']);
         

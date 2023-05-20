@@ -17,9 +17,23 @@ class ResultController extends Controller
         $this->middleware('auth');
     }
     
+    /**
+     * index
+     */
     public function index()
     {
         $userMood = UserMood::where('user_id', auth()->user()->id)->get();
         return view('user.result', compact('userMood'));
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $userMood = UserMood::findOrFail($id);
+        $userMood->delete();
+        
+        return redirect()->route('user.result');
     }
 }

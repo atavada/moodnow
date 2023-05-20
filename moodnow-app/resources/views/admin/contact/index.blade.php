@@ -1,28 +1,23 @@
 @extends('layouts.app')
-@section('title', 'Music')
+@section('title', 'Contact')
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Music Recommendation</h1>
+            <h1>Contact</h1>
         </div>
 
         <div class="section-body">
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-music"></i> Music Recommendation</h4>
+                    <h4><i class="fas fa-envelope"></i> Contact</h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.music.index') }}" method="GET">
+                    <form action="{{ route('admin.contact.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                @can('musics.create')
-                                    <div class="input-group-prepend">
-                                        <a href="{{ route('admin.music.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
-                                    </div>
-                                @endcan
                                 <input type="text" class="form-control" name="q"
                                        placeholder="cari berdasarkan judul musik">
                                 <div class="input-group-append">
@@ -37,29 +32,27 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
-                                <th scope="col">TITLE</th>
-                                <th scope="col" style="width: 15%;text-align: center">MOOD</th>
-                                <th scope="col" style="width: 40%;text-align: center">EMBED</th>
+                                <th scope="col">NAME</th>
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">MESSAGE</th>
                                 <th scope="col" style="width: 15%;text-align: center">ACTION</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($musics as $no => $music)
+                            @foreach ($contacts as $no => $contact)
                                 <tr>
-                                    <th scope="row" style="text-align: center">{{ ++$no + ($musics->currentPage()-1) * $musics->perPage() }}</th>
-                                    <td>{{ $music->title }}</td>
-                                    <td style="text-align: center">{{ ($music->output) == 'mood_baik' ? 'Mood Baik' : 'Mood Buruk' }}</td>
-                                    <td class="text-center">
-                                       {!! $music->embed !!}
+                                    <th scope="row" style="text-align: center">{{ ++$no + ($contacts->currentPage()-1) * $contacts->perPage() }}</th>
+                                    <td>{{ $contact->name }}</td>
+                                    <td>{{ $contact->email }}</td>
+                                    <td>
+                                       {!! $contact->message !!}
                                     </td>
                                     <td class="text-center">
-                                        @can('musics.edit')
-                                            <a href="{{ route('admin.music.edit', $music->id) }}" class="btn btn-sm btn-primary">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </a>
-                                        @endcan
-                                        @can('musics.delete')
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $music->id }}">
+                                        <a href="{{ $contact->email }}" class="btn btn-sm btn-primary">
+                                            Send
+                                        </a>
+                                        @can('contacts.delete')
+                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $contact->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         @endcan
@@ -69,7 +62,7 @@
                             </tbody>
                         </table>
                         <div style="text-align: center">
-                            {{ $musics->links("vendor.pagination.bootstrap-5") }}
+                            {{ $contacts->links("vendor.pagination.bootstrap-5") }}
                         </div>
                     </div>
                 </div>
@@ -99,7 +92,7 @@
     
                         //ajax delete
                         jQuery.ajax({
-                            url: "{{ route("admin.music.index") }}/"+id,
+                            url: "{{ route("admin.contact.index") }}/"+id,
                             data:   {
                                 "id": id,
                                 "_token": token

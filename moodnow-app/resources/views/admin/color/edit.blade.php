@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Edit Color Managed')
 
 @section('content')
     <section class="section">
@@ -10,7 +11,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-unlock"></i> Edit Color</h4>
+                    <h4><i class="fas fa-paint-brush"></i> Edit Color</h4>
                 </div>
 
                 <div class="card-body">
@@ -26,6 +27,7 @@
                                     <option value="{{ $quiz->id }}" {{ old('mood', $quiz->mood) == $color->mood ? 'selected' : '' }}>{{ $quiz->mood }}</option>
                                 @endforeach
                             </select>
+                            
                             @error('mood')
                             <div class="invalid-feedback" style="display: block">
                                 {{ $message }}

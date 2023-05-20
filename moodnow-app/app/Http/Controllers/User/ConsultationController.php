@@ -12,42 +12,23 @@ class ConsultationController extends Controller
 {
     /**
      * __construct
-     *
-     * @return void
      */
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware(['permission:consuls.create|consuls.delete']);
     }
 
     /**
      * index
-     *
-     * @return void
      */
     public function index()
     {
-        $consuls = Consul::get();
+        $consuls = Consul::where('user_id', auth()->id())->get();
         return view('user.consul', compact('consuls'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $users = User::latest()->get();
-        return view('user.consul', compact('users'));
-    }
-
-    /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -68,28 +49,6 @@ class ConsultationController extends Controller
         } else {
             //redirect dengan pesan error
             return redirect()->route('user.consul')->with(['error' => 'Data Gagal Disimpan!']);
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $consul = Consul::findOrFail($id);
-        $consul->delete();
-
-        if($consul){
-            return response()->json([
-                'status' => 'success'
-            ]);
-        }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
         }
     }
 }

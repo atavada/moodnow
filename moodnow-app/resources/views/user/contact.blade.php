@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', '— Contact')
 
 @section('content')
 <!-- page title -->
@@ -28,19 +29,20 @@
         <div class="col-lg-8 mx-auto">
             <div class="bg-white rounded text-center p-5 shadow-down">
             <h4 class="mb-80">Contact Form</h4>
-            <form action="#" class="row">
+            <form action="{{ route('user.contact.store') }}" class="row" method="POST">
+                @csrf
                 <div class="col-md-6">
-                <input type="text" id="name" name="name" placeholder="Full Name" class="form-control px-0 mb-4" required>
+                    <input type="text" id="name" name="name" placeholder="Full Name" class="form-control px-0 mb-4" required>
                 </div>
                 <div class="col-md-6">
-                <input type="email" id="email" name="email" placeholder="Email Address" class="form-control px-0 mb-4" required>
+                    <input type="email" id="email" name="email" placeholder="Email Address" class="form-control px-0 mb-4" required>
                 </div>
                 <div class="col-12">
-                <textarea name="message" id="message" class="form-control px-0 mb-4"
-                    placeholder="Type Message Here" required></textarea>
+                    <textarea name="message" id="message" class="form-control px-0 mb-4"
+                        placeholder="Type Message Here" required></textarea>
                 </div>
                 <div class="col-lg-6 col-10 mx-auto">
-                <button class="btn btn-primary w-100">send</button>
+                    <button class="btn btn-primary w-100">send</button>
                 </div>
             </form>
             </div>
@@ -49,4 +51,4 @@
     </div>
 </section>
 <!-- /contact -->
-@endsection 
+@endsection

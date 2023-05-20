@@ -5,6 +5,8 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  <title>Dashboard &mdash; @yield('title', 'MoodNow')</title>
+
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/modules/fontawesome/css/all.min.css') }}">
@@ -91,6 +93,12 @@
                       @can('musics.index')
                       <li class="{{ setActive('music') }}">
                         <a href="{{ route('admin.music.index') }}" class="nav-link"><i class="fas fa-music"></i><span>Music Recommendation</span></a>
+                      </li>
+                      @endcan
+
+                      @can('contacts.index')
+                      <li class="{{ setActive('contact') }}">
+                        <a href="{{ route('admin.contact.index') }}" class="nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a>
                       </li>
                       @endcan
         

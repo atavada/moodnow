@@ -20,13 +20,16 @@ class DetectController extends Controller
     }
     
     /**
-     * Display a listing of the resource.
+     * index
      */
     public function index()
     {
         return view('user.detect.index');
     }
 
+    /**
+     * Display detect page
+     */
     public function detectMood() 
     {
         $quizs = Questionnaire::get();
@@ -34,6 +37,9 @@ class DetectController extends Controller
         return view('user.detect.detectMood', compact('quizs', 'colors'));
     }
 
+    /**
+     * Function detect mood
+     */
     public function prosesDetect(Request $request, Questionnaire $quiz)
     {
         $quiz_id = $request->input('quiz_id');
@@ -76,6 +82,9 @@ class DetectController extends Controller
         return redirect()->route('user.detect.result', compact('userMood'));
     }
     
+    /**
+     * Display result
+     */
     public function result()
     {
         $user_mood = UserMood::latest()->first();

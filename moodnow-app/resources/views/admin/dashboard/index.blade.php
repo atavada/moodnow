@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Info')
 
 @section('content')
   <section class="section">
@@ -14,7 +15,7 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Users Total</h4>
+                <h4>Users MoodNow</h4>
               </div>
               <div class="card-body">
                 {{ App\Models\User::whereHas('roles', function($query) {
@@ -24,24 +25,6 @@
             </div>
           </div>
         </div>
-
-        @can('musics.index')
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-          <div class="card card-statistic-1">
-            <div class="card-icon bg-danger">
-              <i class="fas fa-book"></i>
-            </div>
-            <div class="card-wrap">
-              <div class="card-header">
-                <h4>Music</h4>
-              </div>
-              <div class="card-body">
-                {{ App\Models\Music::count() ?? '0' }}
-              </div>
-            </div>
-          </div>
-        </div>
-        @endcan
 
         @can('quizs.index')
         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -55,6 +38,24 @@
               </div>
               <div class="card-body">
                 {{ App\Models\Questionnaire::count() ?? '0' }}
+              </div>
+            </div>
+          </div>
+        </div>
+        @endcan
+
+        @can('musics.index')
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+          <div class="card card-statistic-1">
+            <div class="card-icon bg-danger">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="card-wrap">
+              <div class="card-header">
+                <h4>Music</h4>
+              </div>
+              <div class="card-body">
+                {{ App\Models\Music::count() ?? '0' }}
               </div>
             </div>
           </div>

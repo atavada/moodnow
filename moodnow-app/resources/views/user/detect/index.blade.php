@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', '— Detect Mood')
 
 @section('content')
 

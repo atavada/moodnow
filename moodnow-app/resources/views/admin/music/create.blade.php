@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Create Music')
 
 @section('content')
     <section class="section">
@@ -10,7 +11,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4><i class="fas fa-unlock"></i> Tambah Music</h4>
+                    <h4><i class="fas fa-music"></i> Tambah Music</h4>
                 </div>
 
                 <div class="card-body">
@@ -19,7 +20,7 @@
 
                         <div class="form-group">
                             <label>TITLE</label>
-                            <input type="text" name="title" value="{{ old('title') }}" placeholder="Masukkan Judul Lagu"
+                            <input type="text" name="title" value="{{ old('title') }}" placeholder="Masukkan Title"
                                 class="form-control @error('title') is-invalid @enderror">
 
                             @error('title')
@@ -46,7 +47,7 @@
 
                         <div class="form-group">
                             <label>EMBED</label>
-                            <textarea class="form-control embed @error('embed') is-invalid @enderror" name="embed" placeholder="Masukkan Embed Playlist Lagu"  style="height: 200px;">{!! old('embed') !!}</textarea>
+                            <textarea class="form-control embed @error('embed') is-invalid @enderror" name="embed" placeholder="Masukkan Embed Playlist or Lagu"  style="height: 200px;">{!! old('embed') !!}</textarea>
 
                             @error('embed')
                             <div class="invalid-feedback" style="display: block">

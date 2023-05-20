@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Consultation')
 
 @section('content')
     <section class="section">
@@ -32,7 +33,7 @@
                             <tr>
                                 <th scope="col" style="text-align: center;width: 6%">NO.</th>
                                 <th scope="col">USERNAME</th>
-                                <th scope="col">QUESTION</th>
+                                <th scope="col">QUESTION OR STORY</th>
                                 <th scope="col">ANSWER</th>
                                 <th scope="col" style="width: 10%;text-align: center">CREATED AT</th>
                                 <th scope="col" style="width: 10%;text-align: center">ANSWERED AT</th>
